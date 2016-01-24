@@ -11,6 +11,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="{!! asset('css/main.css') !!}" />
+		<link rel="stylesheet" href="{!! asset('css/style.css') !!}" />
+		@yield('css')
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
 	<body class="landing">
@@ -42,5 +44,6 @@
 		<script src="{!! asset('js/util.js') !!}"></script>
 		<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 		<script src="{!! asset('js/main.js') !!}"></script>
+		@yield('js')
 	</body>
 </html>

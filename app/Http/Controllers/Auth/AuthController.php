@@ -30,6 +30,8 @@ class AuthController extends Controller
      */
     protected $redirectTo = '/';
 
+    //protected $loginPath = '/login';
+
     /**
      * Create a new authentication controller instance.
      *
@@ -39,6 +41,7 @@ class AuthController extends Controller
     {
         $this->middleware('guest', ['except' => 'logout']);
     }
+
 
     /**
      * Get a validator for an incoming registration request.
