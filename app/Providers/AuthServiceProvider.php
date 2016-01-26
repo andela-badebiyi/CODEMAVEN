@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Providers;
-
+use Auth;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -26,6 +26,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies($gate);
 
-        //
+        $gate->define('user-is-signed-in', function(){
+            return Auth::check();
+        });
     }
 }

@@ -5,8 +5,23 @@
 		<ul>
 			<li><a href="/">Home</a></li>
 			@if(Auth::check())
-				{!! 'Hello, '. Auth::user()->name !!}
-				<a href='/logout'>Logout</a>
+			<li>
+				<a href="#" class="icon fa-angle-down">
+					<img src="{!! session('avatar') !!}" height=20 width=20/>
+					{!! Auth::user()->name !!}
+				</a>
+				<ul>
+					<li>	
+						<a href="/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a>
+					</li>
+					<li>
+						<a href='/logout'><i class="fa fa-sign-out"></i> Logout</a>
+					</li>
+					<li>
+						<a href='#'><i class="fa fa-cog"></i> Settings</a>
+					</li>
+				</ul>
+			</li>
 			@else
 				{{ Auth::user() }}
 				<li><a href="/login">Sign In</a></li>

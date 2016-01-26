@@ -36,4 +36,6 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/login/{provider}', 'AccountController@socialAuth');
 
+    Route::controller('/', 'UserController');
+
 });
