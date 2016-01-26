@@ -31,4 +31,9 @@ Route::group(['middleware' => 'web'], function () {
 	});
 
     Route::get('/home', 'HomeController@index');
+
+    Route::get('/callback/{provider}', 'AccountController@callback');
+
+    Route::get('/login/{provider}', 'AccountController@socialAuth');
+
 });
