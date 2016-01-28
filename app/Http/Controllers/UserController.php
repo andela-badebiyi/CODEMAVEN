@@ -18,4 +18,15 @@ class UserController extends Controller
 	{
 		return view('user.dashboard', ['user' => $request->user()]);
 	}
+
+	public function getProfile(Request $request)
+	{
+		return view('user.editProfile', ['user' => $request->user()]);
+	}
+
+	public function postEditProfile(Request $request)
+	{
+
+	}
+
 }

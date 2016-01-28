@@ -2,7 +2,7 @@
 @section('title', 'Dashboard')
 
 @section('content')
-	<div class="row" style="margin-top:4em;">
+	<div class="row con" style="margin-top:4em;">
 		<div class="col-md-3">
 			@include('partials.dashboard_nav')
 		</div>
@@ -93,5 +93,9 @@
 		font-size: 40px;
 		margin-top: 0.4em;
 	}
+    div.con{
+        height: 100%;
+    }
+
 	</style>
 @endsection

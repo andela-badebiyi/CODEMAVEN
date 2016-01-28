@@ -5,7 +5,7 @@
     <div class="sidebar-nav navbar-collapse">
         <ul class="nav" id="side-menu">
             <li>
-                <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                <a href="/dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
                 <a href="tables.html"><i class="fa fa-youtube-play fa-fw"></i></i> Videos </a>
@@ -14,7 +14,7 @@
                 <a href="tables.html"><i class="fa fa-envelope fa-fw"></i> Messages </a>
             </li>
             <li>
-                <a href="forms.html"><i class="fa fa-cog fa-fw"></i> Settings </a>
+                <a href="/profile"><i class="fa fa-cog fa-fw"></i> Account </a>
             </li>
         </ul>
     </div>
