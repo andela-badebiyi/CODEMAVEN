@@ -8,7 +8,7 @@
                 <a href="/dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
             </li>
             <li>
-                <a href="tables.html"><i class="fa fa-youtube-play fa-fw"></i></i> Videos </a>
+                <a href="/videos"><i class="fa fa-youtube-play fa-fw"></i></i> Videos </a>
             </li>
             <li>
                 <a href="tables.html"><i class="fa fa-envelope fa-fw"></i> Messages </a>

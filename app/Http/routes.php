@@ -24,6 +24,7 @@
 */
 
 Route::group(['middleware' => 'web'], function () {
+    
     Route::auth();
 
     Route::get('/', function () {
@@ -36,8 +37,12 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/login/{provider}', 'AccountController@socialAuth');
 
-    Route::controller('/', 'UserController');
+    Route::resource('videos', 'VideoController');
 
-    Route::controller('/', 'VideoController');
+    Route::get('/dashboard', 'UserController@getDashboard');
+
+    Route::get('/profile', 'UserController@getProfile');
+
+    Route::post('/profile', 'UserController@postProfile');
 
 });
