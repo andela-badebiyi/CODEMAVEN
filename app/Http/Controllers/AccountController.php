@@ -38,6 +38,8 @@ class AccountController extends Controller
 
     private function registerUser($data) 
     {
+        $this->clearAvatarSession();
+
     	$user = new User;
     	//register user
     	$user->email = $data->id;
@@ -55,7 +57,9 @@ class AccountController extends Controller
 
     private function logUserIn($data)
     {
-    	//fetch person
+    	$this->clearAvatarSession();
+        
+        //fetch person
     	$person = User::where('email', $data->id)->get()->first();
 
     	//log person in
@@ -74,4 +78,11 @@ class AccountController extends Controller
 	    }
     	return $randomString;
 	}
+
+    private function clearAvatarSession()
+    {
+        if (session()->has('avatar')) {
+            session()->forget('avatar');
+        }
+    }
 }

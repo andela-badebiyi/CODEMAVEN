@@ -38,4 +38,6 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::controller('/', 'UserController');
 
+    Route::controller('/', 'VideoController');
+
 });

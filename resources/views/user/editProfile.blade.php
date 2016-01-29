@@ -8,18 +8,35 @@
 		</div>
 
     <div class="col-md-8">
+      @if (Session::has('message'))
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <i class='fa fa-check'></i> {{ Session::get('message') }}
+        </div>
+      @endif
+
+      @if(count($errors->all()))
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            @foreach($errors->all() as $error)
+              <div><i class='fa fa-times'></i> {{ $error }} </div>
+            @endforeach
+        </div>
+      @endif
     	<h2 style="border-bottom:solid thin #ccc; border-top:solid thin #ccc;">
     		Profile
     	</h2>
     	<div class='profile-container'>
-    		<form action='/edit' method='post'>
+    		<form action='/profile' method='post' enctype="multipart/form-data">
+        {!! csrf_field() !!}
     		@if( !isset($user->avatar) || $user->avatar == null )
-    			<img src='{{ asset("img/placeholder.png") }}' />
+    			<img src='{{ asset("img/placeholder.png") }}' width=300 height=300 />
     		@else
-    			<img src='{!! $user->avatar !!}' />
+    			<img src='{!! $user->avatar !!}' width=300 height=300/>
     		@endif
     		<br/>
-    		<a href='javascript:void(0)' class='fa fa-plus btn btn-info' style='margin-bottom:1em;'> Select Profile Picture</a>
+        <input type='file' name='avatar' id='upload'>
+    		<a href='javascript:void(0)' id='upload-button' class='fa fa-plus btn btn-info' style='margin-bottom:1em; display:none;'> Select Profile Picture</a>
 
     		<div class="panel panel-info">
     			<div class="panel-heading">
@@ -34,30 +51,30 @@
     				</p>
 
             <p> 
-              <strong>Age</strong><br/>
-              <span>23</span>
-              <input type='text' name='age' value='' style='display:none;'>
+              <strong>Date Of Birth</strong><br/>
+              <span>{{ $user->dob }}</span>
+              <input type='text' name='dob'class='dob' value='{{ $user->dob }}' style='display:none;'>
             </p>
 
     				<p> 
     					<strong>Occupation</strong><br/> 
-    					<span>Lawyer</span>
-    					<input type='text' name='occupation' value='' style='display:none;'>
+    					<span>{{ $user->occupation }}</span>
+    					<input type='text' name='occupation' value='{{ $user->occupation}}' style='display:none;'>
     				</p>
     				<p> 
     					<strong>Location</strong><br/> 
-    					<span>Unknown</span>
-    					<input type='text' name='location' value='' style='display:none;'>
+    					<span>{{ $user->location }}</span>
+    					<input type='text' name='location' value='{{ $user->location }}' style='display:none;'>
     				</p>
     				<p> 
     					<strong>Favourite Stack</strong><br/>
-    					<span>Java </span>
-    					<input type='text' name='favstack' value='' style='display:none;'>
+    					<span>{{ $user->favstack }} </span>
+    					<input type='text' name='favstack' value='{{ $user->favstack }}' style='display:none;'>
     				</p>
     				<p> 
     					<strong>About Me</strong><br/>
-    					<span>None</span>
-    					<textarea type='text' name='about' style='display:none;'></textarea>
+    					<span>{{ $user->bio }}</span>
+    					<textarea type='text' name='bio' style='display:none;'>{{ $user->bio }}</textarea>
     				</p>
     				<input type='submit' value='Save Details' class='button special' style="display:none;">
     			</div>
@@ -71,6 +88,7 @@
   </div>
 
   @section('css')
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
   <style>
   .profile-container{
   	border: solid thin #ccc;
@@ -96,6 +114,9 @@
   input, textarea{
   	max-width: 17em;
   }
+  #upload{
+    display:none !important;
+  }
   </style>
   @endsection
   @section('js')
@@ -106,6 +127,7 @@
 	  		$('input').toggle('slow');
         $('textarea').toggle('show');
 	  		$('p span').toggle();
+        $('#upload-button').toggle();
 	  		
 	  		if ($(this).html() === " Edit Profile") {
 	  			$(this).removeClass('fa-pencil-square-o');
@@ -118,7 +140,20 @@
 	  		}
 	  		return false;
 	  	});
+
+      $("#upload-button").click(function(){
+          console.log('clicked');
+          $("#upload").trigger('click');
+      });
 	  });
+
+
 	  </script>
+    <script src='https://code.jquery.com/ui/1.11.4/jquery-ui.min.js'></script>
+    <script>
+      $( ".dob" ).datepicker({
+        dateFormat: "yy-mm-dd"
+      });
+    </script>
   @endsection
 @endsection
