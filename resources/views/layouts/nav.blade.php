@@ -7,11 +7,11 @@
 			@if(Auth::check())
 			<li>
 				<a href="#" class="icon fa-angle-down">
-					<img src="{!! session('avatar') !!}" height=20 width=20/>
+					<img src="{!! Auth::user()->avatar !!}" height=20 width=20/>
 					{!! Auth::user()->name !!}
 				</a>
 				<ul>
-					<li>	
+					<li>
 						<a href="/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a>
 					</li>
 					<li>

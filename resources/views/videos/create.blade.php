@@ -13,24 +13,7 @@
         </h2>
         <div>
             <form action='{{ route("videos.store") }}' method='post'>
-                {!! csrf_field() !!}
-                <div>
-                    <label for='title'>Title</label>
-                    <input type='text' name='title'>
-                </div>
-                <div>
-                    <label for='title'>Description</label>
-                    <textarea name='description'></textarea>
-                </div>
-                <div>
-                    <label for='title'>Category</label>
-                    <input type='text' name='category'>
-                </div>
-                <div>
-                    <label for='title'>Url</label>
-                    <input type='text' name='url'>
-                </div>
-                <br/>
+                @include('partials.video_form')
                 <input type='submit' name='submit' value='Upload Video Tutorial' class='fa fa-upload'>
             </form>
         </div>

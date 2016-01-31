@@ -29,5 +29,9 @@ class AuthServiceProvider extends ServiceProvider
         $gate->define('user-is-signed-in', function(){
             return Auth::check();
         });
+
+        $gate->define('user-owns-video', function($user, $video){
+          return $user->id === $video->user_id;
+        });
     }
 }

@@ -11,10 +11,12 @@ class VideoTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Video::class, 11)->create(
+
+        factory(App\Video::class, 10)->create(
         [
         	'user_id' => 1,
-        	'url' => 'https://www.youtube.com/watch?v=ULjwrS6ajYk'
+        	'url' => 'https://www.youtube.com/watch?v=ULjwrS6ajYk',
         ]);
+
     }
 }

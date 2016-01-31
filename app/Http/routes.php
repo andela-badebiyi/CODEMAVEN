@@ -24,20 +24,19 @@
 */
 
 Route::group(['middleware' => 'web'], function () {
-    
+
     Route::auth();
 
-    Route::get('/', function () {
-    	return view('home');
-	});
+    Route::get('/allvideos', 'HomeController@allVideos');
 
-    Route::get('/home', 'HomeController@index');
+    Route::get('/', 'HomeController@index');
 
     Route::get('/callback/{provider}', 'AccountController@callback');
 
     Route::get('/login/{provider}', 'AccountController@socialAuth');
 
-    Route::resource('videos', 'VideoController');
+    Route::resource('videos', 'VideoController'
+    );
 
     Route::get('/dashboard', 'UserController@getDashboard');
 
@@ -45,4 +44,9 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::post('/profile', 'UserController@postProfile');
 
+    Route::get('/video/{id}/like', 'LikeController@like');
+
+    Route::post('/video/{id}/comment', 'CommentController@store');
+
+    Route::post('/video/{id}/{comment_id}/reply', 'CommentController@storeReply');
 });

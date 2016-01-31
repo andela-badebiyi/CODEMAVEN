@@ -21,11 +21,14 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
 });
 
 $factory->define(App\Video::class, function (Faker\Generator $faker) {
+  $title = $faker->sentence;
+  $slug = str_replace(' ', '-', $title) . '-' . '1';
 	return [
-		'title' => $faker->sentence,
+		'title' => $title,
 		'category' => $faker->word,
 		'description' => $faker->paragraph,
 		'url' => $faker->url,
-		'user_id' => 0
+		'user_id' => 0,
+    'slug' => $slug
 	];
 });

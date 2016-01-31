@@ -8,7 +8,7 @@
 		<p>Where Code Experts and Connoisseurs share their knowledge</p>
 		<ul class="actions">
 			<li><a href="/register" class="button special">Sign Up</a></li>
-			<li><a href="#" class="button">Browse tutorials...</a></li>
+			<li><a href="/allvideos" class="button">Browse tutorials...</a></li>
 		</ul>
 	</section>
 
@@ -22,10 +22,10 @@
 				</h2>
 				<p>
 					Browse our array of comprehensive tutorials on a variety of programming languages provided
-					<br />by experts in their programming fields from around the world 
+					<br />by experts in their programming fields from around the world
 				</p>
 			</header>
-			
+
 		</section>
 
 		<section class="box special">
@@ -38,13 +38,13 @@
 					or pdf tutorials.
 				</p>
 			</header>
-			
+
 		</section>
 
 		<section class="box special features">
 			<div class="features-row">
 				<section>
-					<img src='https://wisdmlabs.com/site/wp-content/uploads/2014/01/php-logo-Converted-01-3.png' 
+					<img src='https://wisdmlabs.com/site/wp-content/uploads/2014/01/php-logo-Converted-01-3.png'
 						width = auto height = 200 />
 					<h3>PHP</h3>
 					<p>
@@ -66,7 +66,7 @@
 					 	width = auto height = 200 />
 					<h3>Java</h3>
 					<p>
-					Java is a high level, object-oriented, platform independent language. 
+					Java is a high level, object-oriented, platform independent language.
 					</p>
 				</section>
 				<section>

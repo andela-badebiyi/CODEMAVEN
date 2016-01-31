@@ -12,7 +12,7 @@
  		min-height: 100%;
  	}
  	#page-wrapper{
- 		min-height: 70%;	
+ 		min-height: 70%;
  	}
 
 	html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
@@ -3764,8 +3764,7 @@
 	text-align: center;
 	border: 1px solid rgba(235, 235, 235, 0.53);
 	box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.35);
-	margin-right:2%;
-	margin-bottom:2%;
+  margin-bottom:1em;
 }
 .last-grid{
 	margin-right:0px;
@@ -3774,13 +3773,12 @@
 	display:block;
 }
 .content-grid h3{
-	font-family: 'gandhi_sansregular';
 	color: #888;
 	text-transform: uppercase;
 	padding: 10px 0;
 	display: block;
 	line-height: 1.5em;
-	font-size: 0.875em;
+  font-size: 1em;
 }
 .content-grid ul li{
 	display:inline-block;
@@ -3813,7 +3811,6 @@
 	-webkit-transition: 0.5s ease;
 	color: #FFF;
 	outline: none;
-	font-family: 'gandhi_sansregular';
 	text-transform: uppercase;
 	display: block;
 	margin: 10px 0 0 0;
