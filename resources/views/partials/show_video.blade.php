@@ -47,14 +47,15 @@
       @endif
       <form action='/video/{{$video->id}}/comment' method='post'>
         {!! csrf_field() !!}
-        <div class='form-action'>
-          <label for='author'>Name</label>
-          <input type='text' name='author' />
-        </div>
+        @if(!Auth::check())
+          <div class='form-action'>
+            <label for='author'>Name</label>
+            <input type='text' name='author' />
+          </div>
+        @endif
         <div class='form-action'>
           <label for='body'>Comment</label>
-          <textarea name='body'>
-          </textarea>
+          <textarea name='body'></textarea>
         </div>
         <div class='form-action' style="margin-top:0.4em;">
           <input type='submit' value='Post Comment' class='btn btn-primary btn-block'>

@@ -13,7 +13,7 @@ class CommentController extends Controller
     public function store(Request $request, $video_id, Comment $comment)
     {
       $comment->create([
-        'user_id' => $request->user()->id,
+        'user_id' => Auth::check() ? $request->user()->id : 0,
         'video_id' => $video_id,
         'author' => Auth::check() ? $request->user()->name : $request->input('author'),
         'body' => $request->input('body'),
@@ -24,7 +24,7 @@ class CommentController extends Controller
     public function storeReply(Request $request, $video_id, $comment_id, Comment $comment)
     {
       $comment->create([
-        'user_id' => $request->user()->id,
+        'user_id' => Auth::check() ? $request->user()->id : 0,
         'video_id' => $video_id,
         'author' => Auth::check() ? $request->user()->name : $request->input('author'),
         'body' => $request->input('body'),

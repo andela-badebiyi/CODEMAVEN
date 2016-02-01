@@ -1,7 +1,11 @@
 @if($reply == 'no')
   <div class='comment-section row' style="margin-bottom:2em">
     <div class='col-md-2'>
-      <img src="{{asset('img/avatar.png')}}" />
+      @if($cmt->user_id == 0)
+        <img src="{{asset('img/avatar.png')}}" />
+      @else
+        <img src="{{$cmt->owner()->first()->avatar}}" width=92 height=auto/>
+      @endif
     </div>
     <div class='col-md-10'>
       <strong style="color:#e89980">{{ $cmt->author }}</strong>
@@ -36,7 +40,11 @@
 @else
   <div class='comment-section row' style="margin-bottom:2em">
     <div class='col-md-2'>
-      <img src="{{asset('img/avatar.png')}}" />
+      @if($cmtreply->user_id == 0)
+        <img src="{{asset('img/avatar.png')}}" />
+      @else
+        <img src="{{$cmtreply->owner()->first()->avatar}}" width=92 height=auto />
+      @endif
     </div>
     <div class='col-md-10'>
       <strong style="color:#e89980">{{ $cmtreply->author }}</strong>

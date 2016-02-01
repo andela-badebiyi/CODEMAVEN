@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddCommentTable extends Migration
+class NewStuff extends Migration
 {
     /**
      * Run the migrations.
@@ -16,6 +16,7 @@ class AddCommentTable extends Migration
           $table->increments('id');
           $table->string('author');
           $table->text('body');
+          $table->integer('user_id')->unsigned();
           $table->integer('video_id')->unsigned();
           $table->foreign('video_id')->references('id')->on('videos');
           $table->integer('reply_id')->unsigned()->default(0);
