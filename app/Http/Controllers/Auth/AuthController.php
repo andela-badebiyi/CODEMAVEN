@@ -64,10 +64,21 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        $user->username = $this->generateUsername($user);
+        $user->save();
+        
+        return $user;
+    }
+
+    private function generateUsername($user)
+    {
+      $name = strtolower(str_replace(' ', '', $user->name));
+      return "{$name}_{$user->id}";
     }
 }

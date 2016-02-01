@@ -13,11 +13,12 @@ class VideoController extends Controller
 {
 	public function __construct()
 	{
-		$this->authorize('user-is-signed-in');
+
 	}
 
     public function index(Request $request)
     {
+			$this->authorize('user-is-signed-in');
     	return view('videos.index', [
     		'user' => $request->user(),
     		'videos' => $request->user()->videos()->get()
@@ -26,6 +27,7 @@ class VideoController extends Controller
 
     public function create(Request $request)
     {
+			$this->authorize('user-is-signed-in');
     	return view('videos.create',[
     		'user' => $request->user(),
     	]);
@@ -45,6 +47,7 @@ class VideoController extends Controller
 
 		public function edit(Request $request, $slug)
 		{
+			$this->authorize('user-is-signed-in');
 			return view('videos.edit', [
 				'video' => Video::where('slug', $slug)->get()->first(),
 				'user' => $request->user()
@@ -53,6 +56,7 @@ class VideoController extends Controller
 
     public function store(UploadVideoRequest $request)
     {
+			$this->authorize('user-is-signed-in');
 			//store video
     	$video = $request->user()->videos()->create($request->all());
 
@@ -65,6 +69,7 @@ class VideoController extends Controller
 
 		public function update(UpdateVideoRequest $request, $slug)
 		{
+			$this->authorize('user-is-signed-in');
 			$video = Video::where('slug', $slug)->get()->first();
 
 			$this->authorize('user-owns-video', $video);
@@ -85,6 +90,7 @@ class VideoController extends Controller
 
 		public function destroy(Request $request, $slug)
 		{
+				$this->authorize('user-is-signed-in');
 				$video = Video::where('slug', $slug)->get()->first();
 				$this->authorize('user-owns-video', $video);
 

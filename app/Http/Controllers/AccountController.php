@@ -36,7 +36,7 @@ class AccountController extends Controller
 
     }
 
-    private function registerUser($data) 
+    private function registerUser($data)
     {
         $this->clearAvatarSession();
 
@@ -48,25 +48,23 @@ class AccountController extends Controller
     	$user->password = md5($this->generatePassword());
     	$user->save();
 
+      //store auto_generated username
+      $user->username = $this->generateUsername($user);
+      $user->save();
+
     	//log user in
     	Auth::loginUsingId($user->id);
-
-    	//store avatar in session
-    	session(['avatar' => $data->avatar]);
     }
 
     private function logUserIn($data)
     {
     	$this->clearAvatarSession();
-        
+
         //fetch person
     	$person = User::where('email', $data->id)->get()->first();
 
     	//log person in
     	Auth::loginUsingId($person->id);
-
-    	//store avatar in session
-    	session(['avatar' => $data->avatar]);
     }
 
     private function generatePassword($length = 10) {
@@ -84,5 +82,11 @@ class AccountController extends Controller
         if (session()->has('avatar')) {
             session()->forget('avatar');
         }
+    }
+
+    private function generateUsername($user)
+    {
+      $name = strtolower(str_replace(' ', '', $user->name));
+      return "{$name}_{$user->id}";
     }
 }

@@ -49,4 +49,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/video/{id}/comment', 'CommentController@store');
 
     Route::post('/video/{id}/{comment_id}/reply', 'CommentController@storeReply');
+
+    Route::post('/search', 'HomeController@searchVideos');
+
+    Route::get('/{username}', 'HomeController@userprofile');
+
+    Route::get('/{username}/videos', 'HomeController@uservideos');
 });
