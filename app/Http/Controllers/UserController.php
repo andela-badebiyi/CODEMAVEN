@@ -51,6 +51,11 @@ class UserController extends Controller
 		
 	}
 
+	public function userSettings(Request $request)
+	{
+		return view('user.settings', ['user' => $request->user()]);
+	}
+
 	private function generateUpdateData($data)
 	{
 		$output = [];

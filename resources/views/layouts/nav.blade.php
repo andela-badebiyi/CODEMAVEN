@@ -1,6 +1,6 @@
 <!-- Header -->
 <header id="header" class="alt" style="background-color:#000;">
-	<h1><a href="/">CodeMaven</a> by Bodunde</h1>
+	<h1><a href="/">CodeMaven</a> <span style='color:#e89980;'>by Bodunde</span></h1>
 	<nav id="nav">
 		<ul>
 			<li><a href="/">Home</a></li>
@@ -25,7 +25,7 @@
 			@else
 				{{ Auth::user() }}
 				<li><a href="/login">Sign In</a></li>
-				<li><a href="/register" class="button">Sign Up</a></li>
+				<li><a href="/register" class="button" style="box-shadow: inset 0 0 0 2px #e89980">Sign Up</a></li>
 			@endif
 		</ul>
 	</nav>

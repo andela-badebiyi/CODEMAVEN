@@ -1,10 +1,10 @@
 @extends('layouts.master')
-@section('title', 'User Profile')
+@section('title', $user->name.' - videos')
 <div class='view-videos'>
   <div class='row'>
     <div class='col-xs-12'>
       <h2 style="border-bottom:solid thin #ccc; border-top:solid thin #ccc;">
-        {{ $user->name }}
+        {{ $user->name }} - Videos
       </h2>
     </div>
   </div>
@@ -18,7 +18,7 @@
         <a href='/{{$user->username}}/videos' class='btn btn-primary btn-block fa fa-film active'> View Videos</a>
       </div>
       <div class='col-xs-12 col-md-4'>
-        <a href='#' class='btn btn-primary btn-block fa fa-envelope'> Send Message</a>
+        <a href='/{{$user->username}}/messages' class='btn btn-primary btn-block fa fa-envelope'> Send Message</a>
       </div>
     </div>
     @include('partials.video_list')

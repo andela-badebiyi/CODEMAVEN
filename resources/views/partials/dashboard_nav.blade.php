@@ -11,10 +11,18 @@
                 <a href="/videos"><i class="fa fa-youtube-play fa-fw"></i></i> Videos </a>
             </li>
             <li>
-                <a href="tables.html"><i class="fa fa-envelope fa-fw"></i> Messages </a>
+                <a href="/messages"><i class="fa fa-envelope fa-fw"></i>
+                  Messages
+                  <span class='badge' style="background-color:#e89980;">
+                    {{ count(Auth::user()->messages()->where('status', 0)->get()) }}
+                  </span>
+                </a>
             </li>
             <li>
-                <a href="/profile"><i class="fa fa-cog fa-fw"></i> Account </a>
+                <a href="/profile"><i class="fa fa-user fa-fw"></i> My Profile </a>
+            </li>
+            <li>
+                <a href="/profile"><i class="fa fa-cog fa-fw"></i> Account Setings</a>
             </li>
         </ul>
     </div>

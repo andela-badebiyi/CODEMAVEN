@@ -44,6 +44,14 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::post('/profile', 'UserController@postProfile');
 
+    Route::get('/messages', 'MessageController@showMessages');
+
+    Route::get('/messages/{id}', 'MessageController@displayMessage');
+
+    Route::delete('/messages/{id}', 'MessageController@destroy');
+
+    Route::post('/messages/reply', 'MessageController@sendReply');
+
     Route::get('/video/{id}/like', 'LikeController@like');
 
     Route::post('/video/{id}/comment', 'CommentController@store');
@@ -55,4 +63,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('/{username}', 'HomeController@userprofile');
 
     Route::get('/{username}/videos', 'HomeController@uservideos');
+
+    Route::get('/{username}/messages', 'MessageController@create');
+
+    Route::post('/{username}/messages', 'MessageController@store');
 });
