@@ -7,6 +7,7 @@ use Redirect;
 use Socialize;
 use App\User;
 use Auth;
+use App\Settings;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -36,7 +37,7 @@ class AccountController extends Controller
 
     }
 
-    private function registerUser($data)
+    private function registerUser($data, Settings $settings)
     {
         $this->clearAvatarSession();
 
@@ -51,6 +52,12 @@ class AccountController extends Controller
       //store auto_generated username
       $user->username = $this->generateUsername($user);
       $user->save();
+
+      //set user default settings
+      $settings->user_id = $user->id;
+      $settings->donotnotifymessage = 0;
+      $settings->disablemessages = 0;
+      $settings->save();
 
     	//log user in
     	Auth::loginUsingId($user->id);

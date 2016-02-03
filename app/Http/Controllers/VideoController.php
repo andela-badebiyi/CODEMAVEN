@@ -35,7 +35,9 @@ class VideoController extends Controller
 
 		public function show(Request $request, $slug)
 		{
-			$video = Video::where('slug', $slug)->get()->first();
+			$video = Video::where('slug', $slug)->firstOrFail();
+			$video->increment('view_count');
+
 			return view('videos.show', [
 				'user' => $request->user(),
 				'video' => $video,
@@ -49,7 +51,7 @@ class VideoController extends Controller
 		{
 			$this->authorize('user-is-signed-in');
 			return view('videos.edit', [
-				'video' => Video::where('slug', $slug)->get()->first(),
+				'video' => Video::where('slug', $slug)->firstOrFail(),
 				'user' => $request->user()
 			]);
 		}
@@ -70,7 +72,7 @@ class VideoController extends Controller
 		public function update(UpdateVideoRequest $request, $slug)
 		{
 			$this->authorize('user-is-signed-in');
-			$video = Video::where('slug', $slug)->get()->first();
+			$video = Video::where('slug', $slug)->firstOrFail();
 
 			$this->authorize('user-owns-video', $video);
 			//fetch video and update
@@ -91,7 +93,7 @@ class VideoController extends Controller
 		public function destroy(Request $request, $slug)
 		{
 				$this->authorize('user-is-signed-in');
-				$video = Video::where('slug', $slug)->get()->first();
+				$video = Video::where('slug', $slug)->firstOrFail();
 				$this->authorize('user-owns-video', $video);
 
 

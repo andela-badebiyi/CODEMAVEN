@@ -15,6 +15,13 @@
       @else
         {{ $video->description }}
       @endif
+      <div class='text-align'>
+        <span class='fa fa-eye' style="border:solid medium #e89980;
+        padding:0.2em 0.2em 0.2em 0.2em; background-color:#e89980;
+        border-radius: 4px 4px 4px 4px; color: #fff;"> 
+          {{$video->view_count}} views
+        </span>
+      </div>
     </p>
     @can('user-owns-video', $video)
       <a class="button-vid" href="{!! route('videos.edit', ['slug' => $video->slug]) !!}"

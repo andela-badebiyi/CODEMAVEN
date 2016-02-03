@@ -3,7 +3,16 @@
 	<h1><a href="/">CodeMaven</a> <span style='color:#e89980;'>by Bodunde</span></h1>
 	<nav id="nav">
 		<ul>
-			<li><a href="/">Home</a></li>
+			<li>
+				<a href="/" class="icon fa-angle-down">Home</a>
+				<ul>
+					<li>
+						<a href='/request'>
+							Make Video Request
+						</a>
+					</li>
+				</ul>
+			</li>
 			@if(Auth::check())
 			<li>
 				<a href="#" class="icon fa-angle-down">
@@ -18,7 +27,7 @@
 						<a href='/logout'><i class="fa fa-sign-out"></i> Logout</a>
 					</li>
 					<li>
-						<a href='#'><i class="fa fa-cog"></i> Settings</a>
+						<a href='/settings'><i class="fa fa-cog"></i> Account Settings</a>
 					</li>
 				</ul>
 			</li>

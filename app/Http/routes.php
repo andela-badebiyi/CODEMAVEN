@@ -35,14 +35,19 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/login/{provider}', 'AccountController@socialAuth');
 
-    Route::resource('videos', 'VideoController'
-    );
+    Route::resource('videos', 'VideoController');
 
     Route::get('/dashboard', 'UserController@getDashboard');
 
     Route::get('/profile', 'UserController@getProfile');
 
     Route::post('/profile', 'UserController@postProfile');
+
+    Route::get('/settings', 'SettingsController@index');
+
+    Route::delete('/deleteaccount', 'UserController@deleteuser');
+
+    Route::post('/settings', 'SettingsController@save');
 
     Route::get('/messages', 'MessageController@showMessages');
 
@@ -51,6 +56,8 @@ Route::group(['middleware' => 'web'], function () {
     Route::delete('/messages/{id}', 'MessageController@destroy');
 
     Route::post('/messages/reply', 'MessageController@sendReply');
+
+    Route::get('/request', 'VideoRequestController@index');
 
     Route::get('/video/{id}/like', 'LikeController@like');
 

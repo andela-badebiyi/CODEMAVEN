@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Settings;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -62,7 +63,7 @@ class AuthController extends Controller
      * @param  array  $data
      * @return User
      */
-    protected function create(array $data)
+    protected function create(array $data, Settings $settings)
     {
         $user = User::create([
             'name' => $data['name'],
@@ -72,7 +73,13 @@ class AuthController extends Controller
 
         $user->username = $this->generateUsername($user);
         $user->save();
-        
+
+        //set user default settings
+        $settings->user_id = $user->id;
+        $settings->donotnotifymessage = 0;
+        $settings->disablemessages = 0;
+        $settings->save();
+
         return $user;
     }
 

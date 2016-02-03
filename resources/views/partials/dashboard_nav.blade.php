@@ -22,7 +22,7 @@
                 <a href="/profile"><i class="fa fa-user fa-fw"></i> My Profile </a>
             </li>
             <li>
-                <a href="/profile"><i class="fa fa-cog fa-fw"></i> Account Setings</a>
+                <a href="/settings"><i class="fa fa-cog fa-fw"></i> Account Setings</a>
             </li>
         </ul>
     </div>

@@ -23,32 +23,36 @@
 
       <div class='col-xs-12' style='margin-top:2em;'>
         @include('partials.dashboard_flash')
-        <form action='/{{$user->username}}/messages' method='post'>
-          {!! csrf_field() !!}
-          <div class'form-action'>
-            <label for='name'>Name</label>
-            <input type='text' name='name'>
-          </div>
+        @if($user->settings()->first()->disablemessages == 0)
+          <form action='/{{$user->username}}/messages' method='post'>
+            {!! csrf_field() !!}
+            <div class'form-action'>
+              <label for='name'>Name</label>
+              <input type='text' name='name'>
+            </div>
 
-          <div class'form-action'>
-            <label for='email'>Email</label>
-            <input type='text' name='email'>
-          </div>
+            <div class'form-action'>
+              <label for='email'>Email</label>
+              <input type='text' name='email'>
+            </div>
 
-          <div class'form-action'>
-            <label for='subject'>Subject</label>
-            <input type='text' name='subject'>
-          </div>
+            <div class'form-action'>
+              <label for='subject'>Subject</label>
+              <input type='text' name='subject'>
+            </div>
 
-          <div class'form-action'>
-            <label for='message'>Message</label>
-            <textarea name='message' rows=8></textarea>
-          </div>
+            <div class'form-action'>
+              <label for='message'>Message</label>
+              <textarea name='message' rows=8></textarea>
+            </div>
 
-          <div class'form-action' style='margin-top:1em;'>
-            <button type='submit' class='btn fa fa-paper-plane' style="background-color:#e89980;"> Send Message</button>
-          </div>
-        </form> 
+            <div class'form-action' style='margin-top:1em;'>
+              <button type='submit' class='btn fa fa-paper-plane' style="background-color:#e89980;"> Send Message</button>
+            </div>
+          </form>
+        @else
+          <p style="color:red">This user has disabled this feature</p>
+        @endif
       </div>
     </div>
 

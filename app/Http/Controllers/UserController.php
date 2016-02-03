@@ -48,12 +48,29 @@ class UserController extends Controller
 
 		//redirect back to profile page
 		return redirect()->back()->with('message', 'Update Successful!');
-		
+
 	}
 
 	public function userSettings(Request $request)
 	{
 		return view('user.settings', ['user' => $request->user()]);
+	}
+
+	public function deleteUser(Request $request)
+	{
+		//fetch user
+		$user = $request->user();
+
+		//prepare user for deleting
+		$user->comments()->delete();
+		$user->videos()->delete();
+		$user->settings()->delete();
+		$user->messages()->delete();
+		$user->likes()->delete();
+
+		$user->delete();
+
+		return redirect('/');
 	}
 
 	private function generateUpdateData($data)
@@ -78,8 +95,8 @@ class UserController extends Controller
         	$filepath,
         	[
         		'public_id' => $public_id,
-	        	"crop" => "fill", 
-	        	"width" => "300", 
+	        	"crop" => "fill",
+	        	"width" => "300",
 	        	"height" => "300"
         	]
         );
