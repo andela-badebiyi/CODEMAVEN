@@ -17,8 +17,8 @@ class CreateRequestTable extends Migration
           $table->string('description');
           $table->string('requester_name');
           $table->string('requester_email');
-          $table->string('request_status');
-          $table->integer('resolver_id');
+          $table->integer('request_status')->default(0);
+          $table->integer('resolver_id')->nullable();
           $table->timestamps();
         });
     }

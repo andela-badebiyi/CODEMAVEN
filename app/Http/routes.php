@@ -59,6 +59,10 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/request', 'VideoRequestController@index');
 
+    Route::post('/request', 'VideoRequestController@save');
+
+    Route::get('/request/{request_id}', 'VideoRequestController@resolveRequest');
+
     Route::get('/video/{id}/like', 'LikeController@like');
 
     Route::post('/video/{id}/comment', 'CommentController@store');

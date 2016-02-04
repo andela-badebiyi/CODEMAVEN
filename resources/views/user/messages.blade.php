@@ -1,11 +1,11 @@
 @extends('layouts.master')
 @section('title', 'Dashboard')
-
+@section('content')
 	<div class="row con" style="margin-top:4em;">
 		<div class="col-md-3">
 		  @include('partials.dashboard_nav')
 		</div>
-		<div class="col-md-8">
+		<div class="col-xs-12 col-md-8">
 		  <h2 style="border-bottom:solid thin #ccc; border-top:solid thin #ccc;">Messages</h2>
 				@include('partials.dashboard_flash')
           @if(count($messages) == 0)
@@ -32,7 +32,7 @@
             @endif
 		</div>
 	</div>
-
+@endsection
 	<style>
 	.huge{
 		font-size: 40px;

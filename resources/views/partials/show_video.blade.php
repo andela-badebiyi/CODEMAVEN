@@ -6,13 +6,13 @@
     <h4> <strong>Uploaded {{$video->created_at->diffForHumans()}}</strong> </h4>
     <p>
       {{$video->description}}<br/>
-      <span class='fa fa-heart' style='color:#e89980;'>
-          {{ count($video->likes) }} likes <br/>
+      <span class='fa fa-heart' style='color:#e89980; margin-left:3px;'>
+          <span id='like-count'>{{ count($video->likes) }}</span>
           @can('user-is-signed-in')
-            @if(App\Video::userHasAlreadyLikedVideo(Auth::user()->id, $video->id))
-              <a href='/video/{{$video->id}}/like'><span class='fa fa-thumbs-down'> Unlike</span></a>
+            @if($video->likes()->get()->contains('user_id', Auth::user()->id))
+              <a href='/video/{{$video->id}}/like' style="border-bottom:none;" id='like' class='fa fa-thumbs-down'></a>
             @else
-              <a href='/video/{{$video->id}}/like'><span class='fa fa-thumbs-up'> Like</span></a>
+              <a href='/video/{{$video->id}}/like' style="border-bottom:none;" id='like' class='fa fa-thumbs-up'></a>
             @endif
           @endcan
       </span><br/>
@@ -37,7 +37,7 @@
     </div>
   @endif
   <div class='add-comments row'>
-    <div class='col-md-6'>
+    <div class='col-xs-12 col-md-8'>
       <h4>Add Comments</h4>
       @if (Session::has('message-comment'))
         <div class="alert alert-success">
@@ -64,3 +64,4 @@
     </div>
   </div>
 </div>
+

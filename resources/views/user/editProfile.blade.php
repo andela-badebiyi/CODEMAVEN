@@ -7,7 +7,7 @@
 			@include('partials.dashboard_nav')
 		</div>
 
-    <div class="col-md-8">
+    <div class="col-xs-12 col-md-8">
       @include('partials.dashboard_flash')
     	<h2 style="border-bottom:solid thin #ccc; border-top:solid thin #ccc;">
     		Profile

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title', 'Messages')
-
+@section('content')
 <div class="row con" style="margin-top:4em;">
 	<div class="col-md-3">
 		@include('partials.dashboard_nav')
@@ -33,7 +33,7 @@
 
 	</div>
 </div>
-
+@endsection
 <style>
 .huge{
 	font-size: 40px;

@@ -15,13 +15,21 @@ class LikeController extends Controller
     }
 
     public function like(Request $request, $video_id)
-    {
+    { 
+        $output = 0;
         if (Video::userHasAlreadyLikedVideo($request->user()->id, $video_id)) {
           $this->unlikeVideo($request->user(), $video_id);
+          $output=1;
         } else {
           $this->likeVideo($request->user(), $video_id);
+          $output=2;
         }
-        return redirect()->back();
+        if ($request->ajax()) {
+          return $output;
+        } else {
+          return redirect()->back();  
+        }
+        
     }
 
     private function likeVideo($user, $video_id)

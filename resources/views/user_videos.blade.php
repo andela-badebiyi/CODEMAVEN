@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('title', $user->name.' - videos')
+@section('content')
 <div class='view-videos'>
   <div class='row'>
     <div class='col-xs-12'>
@@ -24,11 +25,11 @@
     @include('partials.video_list')
   </div>
 </div>
-
+@endsection
 
   <style>
     .view-videos{
-      width: 80%;
+      width: 100%;
       margin-top: 3em;
       margin-left: auto;
       margin-right: auto;

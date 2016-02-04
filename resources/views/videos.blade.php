@@ -1,5 +1,6 @@
 @extends('layouts.master')
 @section('title', 'All Videos')
+@section('content')
 <div class='view-videos'>
   <form action='/search' method='post'>
   <div class='row' style='margin-bottom:2em'>
@@ -21,10 +22,10 @@
   @endif
   @include('partials.video_list')
 </div>
-
+@endsection
 <style>
   .view-videos{
-    width: 80%;
+    width: 100%;
     margin-top: 3em;
     margin-left: auto;
     margin-right: auto;

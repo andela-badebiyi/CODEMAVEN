@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-
+use App\VideoRequest;
 use App\Http\Requests;
 use App\Http\Requests\UpdateProfilePostRequest;
 use App\Http\Controllers\Controller;
@@ -18,7 +18,11 @@ class UserController extends Controller
 
 	public function getDashboard(Request $request)
 	{
-		return view('user.dashboard', ['user' => $request->user()]);
+		//dd($request->user()->allCommentsOnVideos());
+		return view('user.dashboard', [
+			'user' => $request->user(),
+			'requests' => VideoRequest::where('request_status', 0)->take(10)->get()
+		]);
 	}
 
 	public function getProfile(Request $request)

@@ -4,13 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Request extends Model
+class VideoRequest extends Model
 {
-    protected $fillable = [
-      'title',
-      'description',
-      'requester_name',
-      'requester_email',
-      'request_status',
-    ];
+  protected $table = 'videorequests';
+  
+  protected $fillable = [
+    'title',
+    'description',
+    'requester_name',
+    'requester_email',
+    'request_status',
+  ];
 }

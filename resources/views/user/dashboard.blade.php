@@ -11,7 +11,7 @@
 		    <div class="row">
 		    	<div class="col-md-12">
 		    		<h4>
-		    			Hello, {!! $user->name !!}. <small>Here are your stats</small> 
+		    			Hello, {!! $user->name !!}. <small>Here are your stats</small>
 		    		</h4>
 		    	</div>
 
@@ -23,14 +23,14 @@
                                     <i class="fa fa-comments fa-4x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
+                                    <div class="huge">{{$user->allCommentsOnVideos()}}</div>
                                     <div>New Comments!</div>
                                 </div>
                             </div>
                         </div>
                         <a href="#" style="color:#337ab7;">
                             <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
+                                <span class="pull-left">Show all comments</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
@@ -46,21 +46,21 @@
                                     <i class="fa fa-eye fa-4x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
+                                    <div class="huge">{{$user->allVideoViews()}}</div>
                                     <div>Video Views!</div>
                                 </div>
                             </div>
                         </div>
                         <a href="#" style="color:#5cb85c">
                             <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
+                                <span class="pull-left">Show Videos</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
                         </a>
                     </div>
                 </div>
-    
+
 
             <div class="col-lg-4 col-md-4">
                     <div class="panel" style="border-color:#f0ad4e; color:#fff;">
@@ -70,20 +70,34 @@
                                     <i class="fa fa-envelope fa-4x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
-                                    <div>Messages</div>
+                                    <div class="huge">{{count($user->messages()->get())}}</div>
+                                    <div>Unread Messages!</div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#" style="color:#f0ad4e">
+                        <a href="/messages" style="color:#f0ad4e">
                             <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
+                                <span class="pull-left">View Messages</span>
                                 <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
                         </a>
                     </div>
                 </div>
+								<div class='col-xs-12'>
+									<div class="panel panel-default">
+									  <div class="panel-heading">Video Requests</div>
+									  <div class="panel-body">
+											@if(count($requests) == 0)
+												<p class='fa fa-frown-o' style='color:red;'>  No open requests available</p>
+											@else
+												@foreach($requests as $request)
+													@include('partials.list_requests')
+												@endforeach
+											@endif
+										</div>
+									</div>
+								</div>
             </div>
 		</div>
 	</div>

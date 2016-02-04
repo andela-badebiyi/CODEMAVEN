@@ -14,7 +14,7 @@
         <div>
             <form action='{{ route("videos.store") }}' method='post'>
                 @include('partials.video_form')
-                <input type='submit' name='submit' value='Upload Video Tutorial' class='fa fa-upload'>
+                
             </form>
         </div>
     </div>
