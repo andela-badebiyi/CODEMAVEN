@@ -15,14 +15,14 @@
     		<form action='/profile' method='post' enctype="multipart/form-data">
         {!! csrf_field() !!}
     		@if( !isset($user->avatar) || $user->avatar == null )
-    			<img src='{{ asset("img/placeholder.png") }}' width=300 height=300 />
+    			<img src='{{ asset("img/placeholder.png") }}' width=200 height=200 />
     		@else
-    			<img src='{!! $user->avatar !!}' width=300 height=300/>
+    			<img src='{!! $user->avatar !!}' width=200 height=200/>
     		@endif
     		<br/>
         <input type='file' name='avatar' id='upload'>
     		<a href='javascript:void(0)' id='upload-button' class='fa fa-plus btn btn-info' style='margin-bottom:1em; display:none;'> Select Profile Picture</a>
-
+        <span id='upload-label' style='display:none; color:#00B300;'>File Selected!</span>
     		<div class="panel panel-info">
     			<div class="panel-heading">
     				<h3> Profile Details </h3>
@@ -83,9 +83,9 @@
   	text-align:center;
   	padding:2em 2em 2em 2em;
   }
-  .profile-container > img{
+  .profile-container  img{
   	margin-top:1em;
-  	border:solid medium #000;
+  	border:groove medium #ccc;
   }
   .panel{
   	text-align: justify;
@@ -129,6 +129,8 @@
       $("#upload-button").click(function(){
           console.log('clicked');
           $("#upload").trigger('click');
+          $(this).hide();
+          $('#upload-label').show();
       });
 	  });
 

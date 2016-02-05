@@ -58,10 +58,11 @@
           <textarea name='body'></textarea>
         </div>
         <div class='form-action' style="margin-top:0.4em;">
-          <input type='submit' value='Post Comment' class='btn btn-primary btn-block'>
+          <button type='submit' class='btn btn-block mybutton'>Post Comment</button>
         </div>
       </form>
     </div>
   </div>
 </div>
+
 

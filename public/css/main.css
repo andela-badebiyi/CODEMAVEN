@@ -16,6 +16,14 @@
         width:50%;
     }
 }
+.mybutton{
+background-color:#e89980; 
+color:#fff;
+}
+.mybutton:hover{
+background-color: #CF8067;
+color:#fff;
+}
 
 /* Reset */
  	html, body{

@@ -27,7 +27,7 @@ class UploadVideoRequest extends Request
             'title' => 'required',
             'description' => 'required',
             'category' => 'required',
-            'url' => 'required|url'
+            'url' => 'required|validYoutubeUrl'
         ];
     }
 }

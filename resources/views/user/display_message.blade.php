@@ -24,7 +24,7 @@
                     <input type='hidden' name='email' value='{{ $message->email }}'>
                     <input type='hidden' name='subject' value='{{ $message->subject }}'>
                     <textarea name='message' rows=6> </textarea>
-                    <button type='submit' class='button fa fa-paper-plane' style="background-color:#e89980; margin-top:1em;">
+                    <button type='submit' class='btn fa fa-paper-plane mybutton' style="margin-top:1em;">
                         Send Reply
                     </button>
                 </form>

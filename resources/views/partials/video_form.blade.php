@@ -16,10 +16,6 @@
     <input type='text' name='url' value="{{ old('url') }}">
 </div>
 <br/>
-<input type='submit' name='submit' value='Upload Video Tutorial' class='fa fa-upload bnt' style="background-color:#e89980;">
-
-<style>
-	.bnt:hover{
-		background-color: #CF8067 !important;
-	}
-</style>
+<button type='submit' name='submit' class='btn fa fa-upload mybutton'>
+    Upload Video Tutorial
+</button>

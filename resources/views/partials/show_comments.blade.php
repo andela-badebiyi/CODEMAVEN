@@ -2,9 +2,9 @@
   <div class='comment-section row' style="margin-bottom:2em">
     <div class='col-md-2'>
       @if($cmt->user_id == 0)
-        <img src="{{asset('img/avatar.png')}}" />
+        <img src="{{asset('img/avatar.png')}}" width=80 />
       @else
-        <img src="{{$cmt->owner()->first()->avatar}}" width=92 height=auto/>
+        <img src="{{$cmt->owner()->first()->avatar}}" width=80 height=auto/>
       @endif
     </div>
     <div class='col-md-10'>
@@ -41,9 +41,9 @@
   <div class='comment-section row' style="margin-bottom:2em">
     <div class='col-md-2'>
       @if($cmtreply->user_id == 0)
-        <img src="{{asset('img/avatar.png')}}" />
+        <img src="{{asset('img/avatar.png')}}" width=80/>
       @else
-        <img src="{{$cmtreply->owner()->first()->avatar}}" width=92 height=auto />
+        <img src="{{$cmtreply->owner()->first()->avatar}}" width=80 height=auto />
       @endif
     </div>
     <div class='col-md-10'>
@@ -75,5 +75,9 @@
     </div>
     @endforeach
   @endif
-
 @endif
+<style>
+.comment-section img{
+  border: solid medium #ccc;
+}
+</style>

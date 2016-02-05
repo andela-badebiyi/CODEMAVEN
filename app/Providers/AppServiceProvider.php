@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Validator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +14,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Validator::extend('validYoutubeUrl', function($attribute, $value, $parameters, $validator) {
+            $client = new \GuzzleHttp\Client();
+            $res = $client->request('GET', 'https://www.youtube.com/oembed?format=json&url='.$value,
+                ['exceptions' => false]);
+
+            return $res->getStatusCode() == 200 ? true : false;
+        });
     }
 
     /**
