@@ -3,11 +3,10 @@
 
 @section('content')
 	<div class="row con" style="margin-top:4em;">
-		<div class="col-md-3">
-			@include('partials.dashboard_nav')
-		</div>
+		
+		@include('partials.dashboard_nav')
 
-    <div class="col-xs-12 col-md-8">
+    <div class=" col-xs-12 col-md-12 col-sm-12 col-lg-8" style="padding:0 3em 0 3em;">
       @include('partials.dashboard_flash')
     	<h2 style="border-bottom:solid thin #ccc; border-top:solid thin #ccc;">
     		Profile

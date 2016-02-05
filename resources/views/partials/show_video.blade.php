@@ -20,7 +20,7 @@
     </p>
   </div>
 </div>
-<div class='lesson-discuss'>
+<div class='lesson-discuss' style="margin-bottom:2em;">
   <h3 class='text-center'> COMMENTS </h3>
   @if (count($comments) == 0)
     <p style='color:#ff0000;'>No Comments</p>

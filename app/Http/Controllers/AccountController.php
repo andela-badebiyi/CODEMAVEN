@@ -70,9 +70,9 @@ class AccountController extends Controller
      *
      * @param $data Array the data of the user that is to be registered
      */
-    private function registerUser($data, Settings $settings)
+    private function registerUser($data)
     {
-
+        $settings = new Settings;
     	$user = new User;
 
     	//register user

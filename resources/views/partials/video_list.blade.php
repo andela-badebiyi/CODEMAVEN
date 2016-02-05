@@ -30,7 +30,7 @@
       </a>
       {{ Form::open(['method' => 'DELETE', 'style' => 'margin-bottom:0;', 'route' => ['videos.destroy', $video->slug]]) }}
         <button class='button-vid' type='submit' style='width:100%;background-color:#d9534f'>
-          <i class="fa fa-times"></i><span>Delete Video</span>
+          <i class="fa fa-trash-o"></i><span> Delete Video</span>
         </button>
       {{ Form::close() }}
     @endcan

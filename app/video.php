@@ -35,6 +35,13 @@ class video extends Model
       return substr($this->url, strpos($this->url, '=')+1);
     }
 
+    /**
+     * Checks whether a video has already being liked by a user
+     *
+     * @param int $user_id ID of user
+     * @param int $video_id ID of video
+     * @return boolean true if video has already been liked and false if otherwise
+     */
     public static function userHasAlreadyLikedVideo($user_id, $video_id)
     {
       return count(Like::where('user_id', $user_id)

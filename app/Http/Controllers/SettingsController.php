@@ -7,13 +7,24 @@ use App\Settings;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+/**
+ * Controller class for user account settings
+ *
+ */
 class SettingsController extends Controller
 {
+    /**
+     * Ensures that only signed-in users has access to this
+     * controller function
+     */
     public function __construct()
     {
       $this->authorize('user-is-signed-in');
     }
 
+    /**
+     * Display settings page
+     */
     public function index(Request $request)
     {
       return view('user.settings', [
@@ -22,9 +33,28 @@ class SettingsController extends Controller
       ]);
     }
 
+    /**
+     * Save settings
+     */
     public function save(Request $request, Settings $settings)
     {
-      $settings = $request->user()->settings()->first();
+      //fetch current signed user
+      $user = $request->user();
+
+      //check that username was changed and proceed to update
+      if (trim($request->input('username')) !== $user->username) {
+        //confirm that the field isn't blank and that the username is unique
+        $this->validate($request, [
+          'username' => 'required|unique:users,username'
+        ]);
+
+        //update username and save
+        $user->username = $request->input('username');
+        $user->save();
+      }
+
+      //update other settings and save
+      $settings = $user->settings()->first();
 
       $settings->disablemessages = $request->has('disablemessages') ?
                 $request->input('disablemessages') : 0;
@@ -34,6 +64,7 @@ class SettingsController extends Controller
 
       $settings->save();
 
+      //redirect back with success message
       return redirect()->back()->with('message','settings has been saved');
     }
 }

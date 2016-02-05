@@ -4,6 +4,9 @@ namespace App;
 use Auth;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+/**
+ * Model class for User
+ */
 class User extends Authenticatable
 {
     /**
@@ -49,6 +52,12 @@ class User extends Authenticatable
       return $this->hasOne('App\Settings', 'user_id');
     }
 
+    /**
+     * Returns the total number of comments on all the videos
+     * of a particular user
+     *
+     * @return int
+     */
     public function allCommentsOnVideos()
     {
       $count = 0;
@@ -60,6 +69,11 @@ class User extends Authenticatable
       return $count;
     }
 
+    /**
+     * Returns the total number of video views on all a user's videos
+     * 
+     * @return int
+     */
     public function allVideoViews()
     {
       $count = 0;

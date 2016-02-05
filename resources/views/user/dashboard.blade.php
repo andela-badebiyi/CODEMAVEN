@@ -3,13 +3,13 @@
 
 @section('content')
 	<div class="row con" style="margin-top:4em;">
-		<div class="col-md-3">
+		<div class="col-md-3 visible-lg-block">
 			@include('partials.dashboard_nav')
 		</div>
-		<div class="col-md-8">
+		<div class=" col-xs-12 col-md-12 col-sm-12 col-lg-8" style="padding:0 3em 0 3em;">
 			<h2 style="border-bottom:solid thin #ccc; border-top:solid thin #ccc;">Dashboard</h2>
 		    <div class="row">
-		    	<div class="col-md-12">
+		    	<div class="col-xs-12 col-sm-12 col-md-12">
 		    		<h4>
 		    			Hello, {!! $user->name !!}. <small>Here are your stats</small>
 		    		</h4>

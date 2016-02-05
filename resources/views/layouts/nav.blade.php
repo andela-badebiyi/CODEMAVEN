@@ -39,3 +39,6 @@
 		</ul>
 	</nav>
 </header>
+<header id="header-2" class="alt" style="background-color:#000;">
+	<h1><a href="/">CodeMaven</a> <span style='color:#e89980;'>by Bodunde</span></h1>
+</header>

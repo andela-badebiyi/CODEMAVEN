@@ -7,12 +7,13 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 
 /**
- *
+ * Controller class for the homepage and other actions
+ * that doesn't require authentication
  */
 class HomeController extends Controller
 {
     /**
-     * Show the application dashboard.
+     * Show the welcome page.
      *
      * @return \Illuminate\Http\Response
      */
@@ -21,27 +22,52 @@ class HomeController extends Controller
         return view('home');
     }
 
+    /**
+     * Shows the all videos page
+     */
     public function allVideos()
     {
+      //fetch all videos
       $videos = Video::all();
+
+      //render view page
       return view('videos', ['videos' => $videos]);
     }
 
+    /**
+     * Shows the user profile page
+     *
+     * @param string $username The username of the user profile to be displayed
+     */
     public function userProfile($username)
     {
+      //fetch user
       $user = User::where('username', $username)->firstOrFail();
+
+      //render view
       return view('user_profile', ['user' => $user]);
     }
 
+    /**
+     * List a users videos
+     *
+     * @param string $username The username of the user's video to be displayed
+     */
     public function userVideos($username)
     {
+      //fetch user
       $user = User::where('username', $username)->firstOrFail();
+
+      //render view passing the user and videos object to the view
       return view('user_videos', [
         'user' => $user,
         'videos' => $user->videos()->get()
       ]);
     }
 
+    /**
+     * Resolves a search query and fetches videos 
+     */
     public function searchVideos(Request $request)
     {
       //remove whitespaces fromo query
@@ -62,13 +88,30 @@ class HomeController extends Controller
         ]);
     }
 
+    /**
+     * Removes stop words from search query
+     *
+     * @param string $query
+     * @return array an array of the keywords
+     */
     private function removeStopWords($query)
     {
+       //fetch predefined stopwords from json file
        $stopWords = json_decode(file_get_contents(asset('stopwords.json')));
+
+       //break query string into array
        $query = explode(' ', $query);
+
+       //remove stop words and return new array
        return array_diff($query, $stopWords);
     }
 
+    /**
+     * Generates the where clause query string
+     *
+     * @param string $query 
+     * @return string query string
+     */
     private function generateWhereClause($query)
     {
       $output = "";

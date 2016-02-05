@@ -1,5 +1,7 @@
 <form method="POST" action="/register">
-		<h2 class='align-center' style='border-bottom: solid 2px #e5e5e5;'>REGISTER FOR AN ACCOUNT</h2>
+		<h2 class='align-center' style='border-bottom: solid 2px #e5e5e5; background-color:#000; color: #e89980'>
+			Sign Up
+		</h2>
 		    {!! csrf_field() !!}
 			    <div class="field">
 		    	@if (count($errors) > 0)
@@ -10,23 +12,23 @@
 						@endforeach
 					</div>
 				@endif
-			        Name
-			        <input type="text" name="name" value="">
+			        <span class='visible-xs-block'>Name</span>
+			        <input type="text" name="name" value="" placeholder='Enter your full name'>
 			    </div>
 
 		    <div class="field">
-		        Email
-		        <input type="email" name="email" value="">
+		        <span class='visible-xs-block'>Email</span>
+		        <input type="email" name="email" value="" placeholder='Enter your email'>
 		    </div>
 
 		    <div class="field">
-		        Password
-		        <input type="password" name="password">
+		        <span class='visible-xs-block'>Password</span>
+		        <input type="password" name="password" placeholder='Enter your password'>
 		    </div>
 
 		    <div class="field">
-		        Confirm Password
-		        <input type="password" name="password_confirmation">
+		        <span class='visible-xs-block'>Confirm Password</span>
+		        <input type="password" name="password_confirmation" placeholder='Confirm your password'>
 		    </div>
 
 		    <div class="field" style="margin-top:1em;">

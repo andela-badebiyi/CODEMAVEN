@@ -12,13 +12,13 @@
 
   <div class='profile-container'>
     <div class='row' style='margin-bottom:2em;'>
-      <div class='col-xs-12 col-md-4' >
+      <div class='col-xs-12 col-sm-4 col-md-4' style="margin-bottom:5px;" >
         <a href='/{{$user->username}}' class='btn btn-primary btn-block fa fa-user'> View Profile</a>
       </div>
-      <div class='col-xs-12 col-md-4'>
+      <div class='col-xs-12 col-sm-4 col-md-4' style="margin-bottom:5px;">
         <a href='/{{$user->username}}/videos' class='btn btn-primary btn-block fa fa-film'> View Videos</a>
       </div>
-      <div class='col-xs-12 col-md-4'>
+      <div class='col-xs-12 col-sm-4 col-md-4' style="margin-bottom:5px;">
         <a href='/{{$user->username}}/messages' class='btn btn-primary btn-block fa fa-envelope active'> Send Message</a>
       </div>
 

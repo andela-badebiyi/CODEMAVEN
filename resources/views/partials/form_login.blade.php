@@ -1,5 +1,5 @@
 <form method="POST" action="/login">
-<h2 class='align-center' style='border-bottom: solid 2px #e5e5e5;'>Login</h2>
+<h2 class='align-center' style='color: #e89980; background-color: #000; border-bottom: solid 2px #e5e5e5;'>Sign In</h2>
     {!! csrf_field() !!}
     <div class="field">
     	@if (count($errors) > 0)
@@ -10,13 +10,13 @@
 				@endforeach
 			</div>
 		@endif
-        Email
-        <input type="email" name="email" value="">
+        <span class='visible-xs-block'>Email</span>
+        <input type="email" name="email" value="" placeholder='Enter your email'>
     </div>
 
     <div class="field">
-        Password
-        <input type="password" name="password">
+        <span class='visible-xs-block'>Password</span>
+        <input type="password" name="password" placeholder='Enter your password'>
     </div>
 
    	<div class="field">

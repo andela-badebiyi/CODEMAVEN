@@ -1,12 +1,11 @@
 @extends('layouts.master')
 @if (Auth::check())
 	@section('title', 'My Videos')
+	@section('content')
 	<div class="row con" style="margin-top:4em;">
-		<div class="col-md-3">
-			@include('partials.dashboard_nav')
-		</div>
+		@include('partials.dashboard_nav')
 
-		<div class="col-md-8">
+		<div class=" col-xs-12 col-md-8 col-sm-12 col-lg-8" style="padding:0 3em 0 3em;">
 
 			@include('partials.dashboard_flash')
 			<h2 style="border-bottom:solid thin #ccc; border-top:solid thin #ccc;">
@@ -16,16 +15,19 @@
 	  	@include('partials.show_video')
     </div>
 	</div>
+	@endsection
 @else
 	@section('title', 'All Videos')
-	<div class='view-videos'>
-		@include('partials.dashboard_flash')
-		<h2 style="border-bottom:solid thin #ccc; border-top:solid thin #ccc;">
-			{{$video->title}}
-		</h2>
-		<p><a href='/allvideos' class='button fa fa-arrow-left'>  Back to all Videos</a></p>
-		@include('partials.show_video')
-	</div>
+	@section('content')
+		<div class='view-videos'>
+			@include('partials.dashboard_flash')
+			<h2 style="border-bottom:solid thin #ccc; border-top:solid thin #ccc;">
+				{{$video->title}}
+			</h2>
+			<p><a href='/allvideos' class='button fa fa-arrow-left'>  Back to all Videos</a></p>
+			@include('partials.show_video')
+		</div>
+	@endsection
 @endif
 <style>
   .video-wrapper{
