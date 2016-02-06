@@ -22,7 +22,7 @@
 		</div>
 
 					<!-- Footer -->
-		<footer id="footer">
+		<div id="footer">
 			<ul class="icons">
 				<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 				<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
@@ -33,7 +33,7 @@
 			<ul class="copyright">
 				<li>&copy; Untitled. All rights reserved.</li><li>Design: Adebiyi Bodunde</li>
 			</ul>
-		</footer>
+		</div>
 
 		<!-- Scripts -->
 		<script src="{!! asset('js/jquery.min.js') !!}"></script>

@@ -27,6 +27,8 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::auth();
 
+    Route::get('auth/email', 'Auth\PasswordController@getEmail');
+
     Route::get('/allvideos', 'HomeController@allVideos');
 
     Route::get('/', 'HomeController@index');

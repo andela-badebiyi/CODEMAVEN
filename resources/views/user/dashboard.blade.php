@@ -22,7 +22,7 @@
                                 </div>
                                 <div class="col-xs-9 text-right">
                                     <div class="huge">{{$user->allCommentsOnVideos()}}</div>
-                                    <div>New Comments!</div>
+                                    <div>Total Comments!</div>
                                 </div>
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                                     <i class="fa fa-envelope fa-4x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">{{count($user->messages()->get())}}</div>
+                                    <div class="huge">{{count($user->messages()->where('status', 0)->get())}}</div>
                                     <div>Unread Messages!</div>
                                 </div>
                             </div>

@@ -49,8 +49,13 @@ class MessageController extends Controller
     	$message->subject = $request->input('subject');
     	$message->message = $request->input('message');
 
-    	//save message and redirect
+    	//save message
     	$message->save();
+
+      //send recepient mail notification//
+      $this->sendNotification($recepient);
+
+      //redirect back to success message
     	return redirect()->back()->with('message', "Your message has been sent to {$recepient->name}!");
     }
 
@@ -138,5 +143,19 @@ class MessageController extends Controller
 
       //redirect to the messages
       return redirect('/messages')->with('message', 'message deleted successfully');
+    }
+
+    private function sendNotification($recepient)
+    {
+      if ($recepient->settings()->first()->donotnotifymessage == 0) {
+        //construct associative array that would passed to view file
+        $data['name'] = $recepient->name;
+
+        //send message
+        Mail::send('mails.message_notification', $data, function($message) use ($recepient){
+            $message->to($recepient->email);
+            $message->subject('CodeMaven - You have a new message');
+        });
+      }
     }
 }

@@ -24,6 +24,7 @@
 	</div>
 
     <div class="field" style="margin-top:1em;">
-        <input type="submit" value="Login">
+        <input type="submit" value="Login"><br/>
+        <a href='/auth/email' style="background-color:#fff;">Forgot password?</a>
     </div>
 </form>
