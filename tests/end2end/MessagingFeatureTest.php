@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class MessagingFeatureTest extends TestCase
 {
@@ -13,21 +10,21 @@ class MessagingFeatureTest extends TestCase
      */
     public function testSendMessageWithIncompleteData()
     {
-      //create a user
+        //create a user
       $user = factory(\App\User::class)->create([
-        'name' => 'John Doe',
-        'email' => 'j_doe@gmail.com',
+        'name'     => 'John Doe',
+        'email'    => 'j_doe@gmail.com',
         'password' => bcrypt('hayakiri'),
       ]);
 
       //set username
       $user->username = 'johndoe_1';
-      $user->save();
+        $user->save();
 
       //set user settings
-      $settings = new \App\Settings;
-      $settings->user_id = $user->id;
-      $settings->save();
+      $settings = new \App\Settings();
+        $settings->user_id = $user->id;
+        $settings->save();
 
       //sendMessage with empty fields
       $this->visit('/'.$user->username)
@@ -50,92 +47,23 @@ class MessagingFeatureTest extends TestCase
 
       //clean up database
       $settings->delete();
-      $user->delete();
+        $user->delete();
     }
 
     /**
-    public function testSendMessageWithCompleteData()
-    {
-      //create a user
-      $user = factory(\App\User::class)->create([
-        'name' => 'John Doe',
-        'email' => 'j_doe@gmail.com',
-        'password' => bcrypt('hayakiri'),
-      ]);
-
-      //set username
-      $user->username = 'johndoe_1';
-      $user->save();
-
-      //set user settings
-      $settings = new \App\Settings;
-      $settings->user_id = $user->id;
-      $settings->donotnotifymessage = 1;
-      $settings->save();
-
-      //send message with valid data
-      $this->visit('/'.$user->username)
-      ->click('Send Message')
-      ->type('Jennifer Garner', 'name')
-      ->type('j_garner@email.com', 'email')
-      ->type('Hello', 'subject')
-      ->type('message body', 'message')
-      ->press('Send Message')
-      ->see('Your message has been sent')
-      ->seeInDatabase('messages', [
-        'sender_name' => 'Jennifer Garner',
-        'email' => 'j_garner@email.com'
-      ]);
-
-      //check user dashboard to see if message is there
-      $this->actingAs($user)
-      ->visit('/messages')
-      ->see('Jennifer Garner');
-
-      //clean up database
-      \App\Message::where('email', 'j_garner@email.com')->delete();
-      $settings->delete();
-      $user->delete();
-    }
-
-
-    public function testMessageReply()
-    {
-      //create a user
-      $user = factory(\App\User::class)->create([
-        'name' => 'John Doe',
-        'email' => 'j_doe@gmail.com'
-      ]);
-
-      //create a message for user
-      $message = factory(\App\Message::class)->create([
-        'reciever_id' => $user->id
-      ]);
-
-      $this->actingAs($user)
-      ->visit('/messages')
-      ->click($message->sender_name)
-      ->type('This is a message reply', 'message')
-      ->press('Send Reply')
-      ->see('Reply Sent!');
-
-      //clean up database
-      $message->delete();
-      $user->delete();
-    }
-    **/
-
+     }
+     **/
     public function testMessageDelete()
     {
-      //create a user
+        //create a user
       $user = factory(\App\User::class)->create([
-        'name' => 'John Doe',
-        'email' => 'j_doe@gmail.com'
+        'name'  => 'John Doe',
+        'email' => 'j_doe@gmail.com',
       ]);
 
       //create a message for user
       $message = factory(\App\Message::class)->create([
-        'reciever_id' => $user->id
+        'reciever_id' => $user->id,
       ]);
 
       //delete message
@@ -145,7 +73,7 @@ class MessagingFeatureTest extends TestCase
       ->press('Delete message')
       ->dontSee($message->sender_name)
       ->notSeeInDatabase('messages', [
-        'reciever_id' => $user->id
+        'reciever_id' => $user->id,
       ]);
 
       //clean up database

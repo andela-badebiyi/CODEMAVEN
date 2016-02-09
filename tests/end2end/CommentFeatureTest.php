@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class CommentFeatureTest extends TestCase
 {
@@ -13,12 +10,12 @@ class CommentFeatureTest extends TestCase
      */
     public function testAddCommentWithWrongData()
     {
-      //create user
+        //create user
       $user = factory(\App\User::class)->create();
 
       //create video
       $video = factory(\App\Video::class)->create([
-        'user_id' => $user->id
+        'user_id' => $user->id,
       ]);
 
       //post a comment without been signed in and no data
@@ -35,17 +32,17 @@ class CommentFeatureTest extends TestCase
 
       //clean up database
       $user->videos()->delete();
-      $user->delete();
+        $user->delete();
     }
 
     public function testAddCommentWithCorrectData()
     {
-      //create user
+        //create user
       $user = factory(\App\User::class)->create();
 
       //add video
       $video = factory(\App\Video::class)->create([
-        'user_id' => $user->id
+        'user_id' => $user->id,
       ]);
 
       //post comment
@@ -55,7 +52,7 @@ class CommentFeatureTest extends TestCase
       ->press('Post Comment')
       ->see('Comment Posted!')
       ->seeInDatabase('comments', [
-        'body' => 'Yaa yaa'
+        'body' => 'Yaa yaa',
       ]);
 
       //post comment reply
@@ -71,7 +68,7 @@ class CommentFeatureTest extends TestCase
 
       //clean up database
       $user->comments()->delete();
-      $user->videos()->delete();
-      $user->delete();
+        $user->videos()->delete();
+        $user->delete();
     }
 }

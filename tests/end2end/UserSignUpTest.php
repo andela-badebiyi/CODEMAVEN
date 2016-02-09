@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class UserSignUpTest extends TestCase
 {
@@ -28,7 +25,7 @@ class UserSignUpTest extends TestCase
 
     public function testSignupWithInvalidEmail()
     {
-      $this->visit('register')
+        $this->visit('register')
       ->type('j_doegmail', 'email')
       ->press('submit')
       ->see('The email must be a valid email address');
@@ -36,7 +33,7 @@ class UserSignUpTest extends TestCase
 
     public function testSignUpWithWrongPasswordConfirmation()
     {
-      $this->visit('register')
+        $this->visit('register')
       ->type('pass1234', 'password')
       ->type('pass', 'password_confirmation')
       ->press('submit')
@@ -45,7 +42,7 @@ class UserSignUpTest extends TestCase
 
     public function testSignUpWithCompleteData()
     {
-      $this->visit('register')
+        $this->visit('register')
       ->type('John Doe', 'name')
       ->type('j_doe@gmail.com', 'email')
       ->type('pass1234', 'password')
@@ -53,13 +50,13 @@ class UserSignUpTest extends TestCase
       ->press('submit')
       ->seePageIs('/dashboard');
 
-      $this->seeInDatabase('users', [
-        'name' => 'John Doe',
-        'email' => 'j_doe@gmail.com'
+        $this->seeInDatabase('users', [
+        'name'  => 'John Doe',
+        'email' => 'j_doe@gmail.com',
       ]);
 
-      $user = \App\User::where('email', 'j_doe@gmail.com')->first();
-      $user->settings()->delete();
-      $user->delete();
+        $user = \App\User::where('email', 'j_doe@gmail.com')->first();
+        $user->settings()->delete();
+        $user->delete();
     }
 }

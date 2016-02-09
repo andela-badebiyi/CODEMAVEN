@@ -1,24 +1,27 @@
-<?php namespace Way\Tests;
+<?php
 
-trait ControllerHelpers {
+namespace Way\Tests;
+
+trait ControllerHelpers
+{
     protected function see()
     {
-        return call_user_func_array(array($this, 'assertSee'), func_get_args());
+        return call_user_func_array([$this, 'assertSee'], func_get_args());
     }
 
     protected function shouldSee()
     {
-        return call_user_func_array(array($this, 'assertSee'), func_get_args());
+        return call_user_func_array([$this, 'assertSee'], func_get_args());
     }
 
     protected function notSee()
     {
-        return call_user_func_array(array($this, 'assertNotSee'), func_get_args());
+        return call_user_func_array([$this, 'assertNotSee'], func_get_args());
     }
 
     protected function shouldNotSee()
     {
-        return call_user_func_array(array($this, 'assertNotSee'), func_get_args());
+        return call_user_func_array([$this, 'assertNotSee'], func_get_args());
     }
 
     protected function assertSee($text, $element = 'body')
@@ -49,6 +52,4 @@ trait ControllerHelpers {
 
         return $crawler->filter("{$element}:contains('{$text}')");
     }
-
 }
-

@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class UserVideoFeatureTest extends TestCase
 {
@@ -11,16 +8,15 @@ class UserVideoFeatureTest extends TestCase
      *
      * @return void
      */
-
     public function testAddNewVideoWithNoData()
     {
-      $user = factory(\App\User::class)->create([
-  				'name' => 'John Doe',
-  				'email' => 'j_doe@gmail.com',
-  				'password' => bcrypt('hayakiri')
-  			]);
+        $user = factory(\App\User::class)->create([
+                'name'     => 'John Doe',
+                'email'    => 'j_doe@gmail.com',
+                'password' => bcrypt('hayakiri'),
+            ]);
 
-      $this->actingAs($user)
+        $this->actingAs($user)
       ->visit('/videos')
       ->click('Upload New Video')
       ->press('submit')
@@ -30,18 +26,18 @@ class UserVideoFeatureTest extends TestCase
       ->see('The url field is required.')
       ->seePageIs('/videos/create');
 
-      $user->delete();
+        $user->delete();
     }
 
     public function testAddNewVideoWithInvalidYoutubeUrl()
     {
-      $user = factory(\App\User::class)->create([
-          'name' => 'John Doe',
-          'email' => 'j_doe@gmail.com',
-          'password' => bcrypt('hayakiri')
+        $user = factory(\App\User::class)->create([
+          'name'     => 'John Doe',
+          'email'    => 'j_doe@gmail.com',
+          'password' => bcrypt('hayakiri'),
         ]);
 
-      $this->actingAs($user)
+        $this->actingAs($user)
       ->visit('/videos')
       ->click('Upload New Video')
       ->type('Learning Laravel', 'title')
@@ -51,19 +47,19 @@ class UserVideoFeatureTest extends TestCase
       ->press('submit')
       ->see('This is an invalid youtube url');
 
-      \App\Video::where('url', 'http://yakata.com')->delete();
-      $user->delete();
+        \App\Video::where('url', 'http://yakata.com')->delete();
+        $user->delete();
     }
 
     public function testAddNewVideoWithValidData()
     {
-      $user = factory(\App\User::class)->create([
-          'name' => 'John Doe',
-          'email' => 'j_doe@gmail.com',
-          'password' => bcrypt('hayakiri')
+        $user = factory(\App\User::class)->create([
+          'name'     => 'John Doe',
+          'email'    => 'j_doe@gmail.com',
+          'password' => bcrypt('hayakiri'),
         ]);
 
-      $this->actingAs($user)
+        $this->actingAs($user)
       ->visit('/videos')
       ->click('Upload New Video')
       ->type('Learning Laravel', 'title')
@@ -74,68 +70,64 @@ class UserVideoFeatureTest extends TestCase
       ->see('Video Successfully Uploaded')
       ->seeInDatabase('videos', ['title' => 'Learning Laravel']);
 
-
-
-      \App\Video::where('url', 'https://www.youtube.com/watch?v=3u1fu6f8Hto')->delete();
-      $user->delete();
+        \App\Video::where('url', 'https://www.youtube.com/watch?v=3u1fu6f8Hto')->delete();
+        $user->delete();
     }
 
     public function testEditExistingVideo()
     {
-      $user = factory(\App\User::class)->create([
-          'name' => 'John Doe',
-          'email' => 'j_doe@gmail.com',
-          'password' => bcrypt('hayakiri')
+        $user = factory(\App\User::class)->create([
+          'name'     => 'John Doe',
+          'email'    => 'j_doe@gmail.com',
+          'password' => bcrypt('hayakiri'),
       ]);
 
-      $video = factory(\App\Video::class)->create([
-          'title' => 'Learning Laravel',
+        $video = factory(\App\Video::class)->create([
+          'title'       => 'Learning Laravel',
           'description' => 'Brief Introduction to Laravel',
-          'category' => 'laravel',
-          'url' => 'https://www.youtube.com/watch?v=3u1fu6f8Hto',
-          'user_id' => $user->id,
-          'slug' => 'brief-introduction-to-laravel'
+          'category'    => 'laravel',
+          'url'         => 'https://www.youtube.com/watch?v=3u1fu6f8Hto',
+          'user_id'     => $user->id,
+          'slug'        => 'brief-introduction-to-laravel',
       ]);
 
-
-      $this->actingAs($user)
-      ->visit('/videos/'.$video->slug."/edit")
+        $this->actingAs($user)
+      ->visit('/videos/'.$video->slug.'/edit')
       ->type('laravel, training, tutorial', 'category')
       ->press('Update Video Tutorial')
       ->see('Video Successfully Updated')
       ->seeInDatabase('videos', [
-        'category' => 'laravel, training, tutorial'
+        'category' => 'laravel, training, tutorial',
       ]);
 
-      $user->videos()->delete();
-      $user->delete();
+        $user->videos()->delete();
+        $user->delete();
     }
 
     public function testDeleteExistingVideo()
     {
-      $user = factory(\App\User::class)->create([
-          'name' => 'John Doe',
-          'email' => 'j_doe@gmail.com',
-          'password' => bcrypt('hayakiri')
+        $user = factory(\App\User::class)->create([
+          'name'     => 'John Doe',
+          'email'    => 'j_doe@gmail.com',
+          'password' => bcrypt('hayakiri'),
       ]);
 
-      $video = $user->videos()->create([
-          'title' => 'Learning Laravel',
+        $video = $user->videos()->create([
+          'title'       => 'Learning Laravel',
           'description' => 'Brief Introduction to Laravel',
-          'category' => 'laravel',
-          'url' => 'https://www.youtube.com/watch?v=3u1fu6f8Hto',
+          'category'    => 'laravel',
+          'url'         => 'https://www.youtube.com/watch?v=3u1fu6f8Hto',
       ]);
 
-      $video->slug = 'brief-introduction-to-laravel';
-      $video->save();
+        $video->slug = 'brief-introduction-to-laravel';
+        $video->save();
 
-
-      $this->actingAs($user)
+        $this->actingAs($user)
       ->visit('videos')
-      ->press("Delete Video")
+      ->press('Delete Video')
       ->notSeeInDatabase('videos', [
-        'title' => 'Learning Laravel',
-        'description' => 'Not a brief introduction to laravel'
+        'title'       => 'Learning Laravel',
+        'description' => 'Not a brief introduction to laravel',
       ]);
 
       //$video->delete();

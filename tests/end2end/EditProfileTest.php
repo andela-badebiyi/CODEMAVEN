@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class EditProfileTest extends TestCase
 {
@@ -13,16 +10,16 @@ class EditProfileTest extends TestCase
      */
     public function testEditProfilePage()
     {
-    	//create a user
+        //create a user
       $user = factory(\App\User::class)->create([
-        'name' => 'John Doe',
-        'email' => 'j_doe@gmail.com',
+        'name'     => 'John Doe',
+        'email'    => 'j_doe@gmail.com',
         'password' => bcrypt('hayakiri'),
-    	]);
+        ]);
 
       //set username
-    	$user->username = 'johndoe_1';
-    	$user->save();
+        $user->username = 'johndoe_1';
+        $user->save();
 
       //update profile
       $this->actingAs($user)
@@ -49,5 +46,4 @@ class EditProfileTest extends TestCase
       //clean up database
       $user->delete();
     }
-
 }

@@ -1,59 +1,58 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class HomeControllerRoutesTest extends TestCase
 {
-  use DatabaseMigrations;
-  public function testHomePage()
-  {
-    $res = $this->call('get', '/');
-    $this->assertResponseOk();
+    use DatabaseMigrations;
 
-    $this->call('get', '/allvideos');
-    $this->assertResponseOk();
-  }
+    public function testHomePage()
+    {
+        $res = $this->call('get', '/');
+        $this->assertResponseOk();
 
-  public function testShowUserVideos()
-  {
-    //create a user
+        $this->call('get', '/allvideos');
+        $this->assertResponseOk();
+    }
+
+    public function testShowUserVideos()
+    {
+        //create a user
     $user = factory(\App\User::class)->create([
-      'name' => 'John Doe',
-      'email' => 'j_doe@gmail.com',
+      'name'     => 'John Doe',
+      'email'    => 'j_doe@gmail.com',
       'password' => bcrypt('hayakiri'),
-      'username' => 'jdoe_1'
+      'username' => 'jdoe_1',
     ]);
 
-    $this->call('get', '/'.$user->username.'/videos');
-    $this->assertResponseOk();
+        $this->call('get', '/'.$user->username.'/videos');
+        $this->assertResponseOk();
     //delete user
     $user->delete();
-  }
+    }
 
-  public function testSearch()
-  {
-    //create a user
+    public function testSearch()
+    {
+        //create a user
     $user = factory(\App\User::class)->create([
-      'name' => 'John Doe',
-      'email' => 'j_doe@gmail.com',
+      'name'     => 'John Doe',
+      'email'    => 'j_doe@gmail.com',
       'password' => bcrypt('hayakiri'),
-      'username' => 'jdoe_1'
+      'username' => 'jdoe_1',
     ]);
 
     //create two videos
     factory(\App\Video::class)->create([
-      'title' => 'learning php',
-      'user_id' => $user->id
+      'title'   => 'learning php',
+      'user_id' => $user->id,
     ]);
 
-    factory(\App\Video::class)->create([
-      'title' => 'learning java',
-      'user_id' => $user->id
+        factory(\App\Video::class)->create([
+      'title'   => 'learning java',
+      'user_id' => $user->id,
     ]);
 
-    $this->visit('allvideos')
+        $this->visit('allvideos')
     ->type('java', 'query')
     ->press('Search')
     ->see('learning java')
@@ -63,6 +62,6 @@ class HomeControllerRoutesTest extends TestCase
 
     //clean database
     $user->videos()->delete();
-    $user->delete();
-  }
+        $user->delete();
+    }
 }

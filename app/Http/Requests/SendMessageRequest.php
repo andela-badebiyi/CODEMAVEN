@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
-
 class SendMessageRequest extends Request
 {
     /**
@@ -24,10 +22,10 @@ class SendMessageRequest extends Request
     public function rules()
     {
         return [
-            'name' => 'required',
+            'name'    => 'required',
             'subject' => 'required',
-            'email' => 'required|email',
-            'message' => 'required'
+            'email'   => 'required|email',
+            'message' => 'required',
         ];
     }
 }

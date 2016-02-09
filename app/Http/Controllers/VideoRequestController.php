@@ -2,47 +2,46 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\VideoRequest;
-use App\Http\Requests;
 use App\Http\Requests\VidRequest;
-use App\Http\Controllers\Controller;
+use App\VideoRequest;
+use Illuminate\Http\Request;
 
 /**
  * Controller class to handle tutorial video request made
- * by guests
+ * by guests.
  */
 class VideoRequestController extends Controller
 {
     /**
-     * Displays the video request page
+     * Displays the video request page.
      */
     public function index(Request $request)
     {
-      return view('videorequest');
+        return view('videorequest');
     }
 
     /**
-     * Save a new video request
+     * Save a new video request.
      */
     public function save(VidRequest $request, VideoRequest $videorequest)
     {
-      //save new request into database
+        //save new request into database
       $videorequest->create($request->all());
 
-      return redirect()->back()->with('message',
+        return redirect()->back()->with('message',
         'Your request has been posted');
     }
 
     /**
-     * Form to resolve a video request
+     * Form to resolve a video request.
      */
     public function resolveRequest(Request $request, $request_id)
     {
-      $this->authorize('user-is-signed-in');
-      return view('videorequest.request_form', [
-        'user' => $request->user(),
-        'request' => VideoRequest::findOrFail($request_id)
+        $this->authorize('user-is-signed-in');
+
+        return view('videorequest.request_form', [
+        'user'    => $request->user(),
+        'request' => VideoRequest::findOrFail($request_id),
       ]);
     }
 }

@@ -1,24 +1,26 @@
-<?php namespace Way\Tests;
+<?php
+
+namespace Way\Tests;
 
 require_once 'TestFacade.php';
 
-class Assert extends TestFacade {
-    protected $aliases = array(
+class Assert extends TestFacade
+{
+    protected $aliases = [
         'eq'       => 'assertEquals',
         'has'      => 'assertContains',
         'type'     => 'assertInternalType',
-        'instance' => 'assertInstanceOf'
-    );
+        'instance' => 'assertInstanceOf',
+    ];
 
     protected function getMethod($methodName)
     {
         // If an alias is registered,
         // that takes precendence.
-        if ($this->isAnAlias($methodName))
-        {
+        if ($this->isAnAlias($methodName)) {
             return $this->aliases[$methodName];
         }
 
-        return 'assert' . ucwords($methodName);
+        return 'assert'.ucwords($methodName);
     }
 }
