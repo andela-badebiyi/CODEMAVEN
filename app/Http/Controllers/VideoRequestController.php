@@ -9,8 +9,8 @@ use App\Http\Requests\VidRequest;
 use App\Http\Controllers\Controller;
 
 /**
- * Controller class to handle tutorial video request made 
- * by guests 
+ * Controller class to handle tutorial video request made
+ * by guests
  */
 class VideoRequestController extends Controller
 {
@@ -39,9 +39,10 @@ class VideoRequestController extends Controller
      */
     public function resolveRequest(Request $request, $request_id)
     {
+      $this->authorize('user-is-signed-in');
       return view('videorequest.request_form', [
         'user' => $request->user(),
-        'request' => VideoRequest::find($request_id)
+        'request' => VideoRequest::findOrFail($request_id)
       ]);
     }
 }

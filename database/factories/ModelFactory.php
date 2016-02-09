@@ -32,3 +32,13 @@ $factory->define(App\Video::class, function (Faker\Generator $faker) {
     'slug' => $slug
 	];
 });
+
+$factory->define(App\Message::class, function (Faker\Generator $faker) {
+  return [
+    'sender_name' => $faker->name,
+    'email' => $faker->email,
+    'subject' => $faker->sentence,
+    'message' => $faker->paragraph,
+    'reciever_id' => 1
+  ];
+});

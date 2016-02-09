@@ -3,7 +3,7 @@
 
 @section('content')
 	<div class="row con" style="margin-top:4em;">
-		
+
 		@include('partials.dashboard_nav')
 
     <div class=" col-xs-12 col-md-12 col-sm-12 col-lg-8" style="padding:0 3em 0 3em;">
@@ -29,34 +29,34 @@
     			</div>
 
     			<div class="panel-body">
-    				<p> 
+    				<p>
     					<strong>Name</strong><br/>
     					<span>{{ $user->name }}</span>
     					<input type='text' name='name' value='{{ $user->name }}' style='display:none;'>
     				</p>
 
-            <p> 
+            <p>
               <strong>Date Of Birth</strong><br/>
               <span>{{ $user->dob }}</span>
               <input type='text' name='dob'class='dob' value='{{ $user->dob }}' style='display:none;'>
             </p>
 
-    				<p> 
-    					<strong>Occupation</strong><br/> 
+    				<p>
+    					<strong>Occupation</strong><br/>
     					<span>{{ $user->occupation }}</span>
     					<input type='text' name='occupation' value='{{ $user->occupation}}' style='display:none;'>
     				</p>
-    				<p> 
-    					<strong>Location</strong><br/> 
+    				<p>
+    					<strong>Location</strong><br/>
     					<span>{{ $user->location }}</span>
     					<input type='text' name='location' value='{{ $user->location }}' style='display:none;'>
     				</p>
-    				<p> 
+    				<p>
     					<strong>Favourite Stack</strong><br/>
     					<span>{{ $user->favstack }} </span>
     					<input type='text' name='favstack' value='{{ $user->favstack }}' style='display:none;'>
     				</p>
-    				<p> 
+    				<p>
     					<strong>About Me</strong><br/>
     					<span>{{ $user->bio }}</span>
     					<textarea type='text' name='bio' style='display:none;'>{{ $user->bio }}</textarea>
@@ -113,7 +113,7 @@
         $('textarea').toggle('show');
 	  		$('p span').toggle();
         $('#upload-button').toggle();
-	  		
+
 	  		if ($(this).html() === " Edit Profile") {
 	  			$(this).removeClass('fa-pencil-square-o');
 	  			$(this).addClass('fa-times');

@@ -39,6 +39,7 @@
   <div class='add-comments row'>
     <div class='col-xs-12 col-md-8'>
       <h4>Add Comments</h4>
+      @include('partials.dashboard_flash')
       @if (Session::has('message-comment'))
         <div class="alert alert-success">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -64,5 +65,3 @@
     </div>
   </div>
 </div>
-
-

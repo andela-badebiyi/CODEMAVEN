@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Dashboard')
+@section('title', 'Account Settings')
 
 @section('content')
 	<div class="row con" style="margin-top:4em;">
@@ -29,7 +29,7 @@
               <input type='text' name='username' value='{{$user->username}}'>
             </div>
             <div class="col-xs-6" style="margin-top:2em;">
-              <button type='submit' class='btn fa fa-floppy-o' style="background-color:#e89980; color:white;"> Save my settings </button>
+              <button type='submit' name='submit' class='btn fa fa-floppy-o' style="background-color:#e89980; color:white;"> Save my settings </button>
             </div>
             </form>
             <div class='col-xs-6' style="margin-top:2em;">

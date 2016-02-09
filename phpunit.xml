@@ -7,15 +7,25 @@
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
          processIsolation="false"
-         stopOnFailure="false">
+         stopOnFailure="true">
     <testsuites>
         <testsuite name="Application Test Suite">
             <directory>./tests/</directory>
+        </testsuite>
+        <testsuite name="models">
+            <directory>./tests/models/</directory>
+        </testsuite>
+        <testsuite name="controllers">
+            <directory>./tests/controllers/</directory>
+        </testsuite>
+        <testsuite name="endtoend">
+            <directory>./tests/end2end/</directory>
         </testsuite>
     </testsuites>
     <filter>
         <whitelist>
             <directory suffix=".php">app/</directory>
+            <directory suffix=".php">./tests/Way/</directory>
         </whitelist>
     </filter>
     <php>
@@ -23,5 +33,6 @@
         <env name="CACHE_DRIVER" value="array"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>
+        <env name="DB_DATABASE" value="codemaven_test"/>
     </php>
 </phpunit>

@@ -32,6 +32,6 @@
 		    </div>
 
 		    <div class="field" style="margin-top:1em;">
-		        <input type="submit" value="Register">
+		        <input type="submit" name='submit' value="Register">
 		    </div>
 		</form>

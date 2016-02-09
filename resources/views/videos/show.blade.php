@@ -6,8 +6,6 @@
 		@include('partials.dashboard_nav')
 
 		<div class=" col-xs-12 col-md-8 col-sm-12 col-lg-8" style="padding:0 3em 0 3em;">
-
-			@include('partials.dashboard_flash')
 			<h2 style="border-bottom:solid thin #ccc; border-top:solid thin #ccc;">
 				{{$video->title}}
 			</h2>
@@ -20,7 +18,6 @@
 	@section('title', 'All Videos')
 	@section('content')
 		<div class='view-videos'>
-			@include('partials.dashboard_flash')
 			<h2 style="border-bottom:solid thin #ccc; border-top:solid thin #ccc;">
 				{{$video->title}}
 			</h2>
@@ -84,7 +81,7 @@ $(document).ready(function(){
 
           likeCount = $('#like-count');
           likeCount.html(parseInt(likeCount.html()) - 1)
-        } 
+        }
         if (result == 2) {
           likeLink.removeAttr('class', 'fa-thumbs-up');
           likeLink.attr('class', 'fa-thumbs-down');

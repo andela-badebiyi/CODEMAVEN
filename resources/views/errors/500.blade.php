@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', '500 - Oops')
+@section('title', '500 - Internal Server Error')
 @section('content')
 <div class="wrap" style="margin-top:6em;">
 	<div class="content">

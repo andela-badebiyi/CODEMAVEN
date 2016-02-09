@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', '404 - Not authorized')
+@section('title', '403 - Not authorized')
 @section('content')
 <div class="wrap" style="margin-top:6em;">
 	<div class="content">

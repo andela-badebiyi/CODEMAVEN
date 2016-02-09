@@ -21,7 +21,7 @@ class User extends Authenticatable
     /**
      * The attributes excluded from the model's JSON form.
      *
-     * @var array
+     * @var array'
      */
     protected $hidden = [
         'password', 'remember_token',
@@ -71,7 +71,7 @@ class User extends Authenticatable
 
     /**
      * Returns the total number of video views on all a user's videos
-     * 
+     *
      * @return int
      */
     public function allVideoViews()

@@ -9,6 +9,6 @@
   <div class=''>
     <label for='description'>Describe Video</label>
     <textarea name='description'></textarea>
-    <button type='submit' class = 'btn fa fa-paper-plane'
+    <button type='submit' name='submit' class = 'btn fa fa-paper-plane'
     style='background-color:#e89980; margin-top:2em'> Post Request</button>
   </div>
