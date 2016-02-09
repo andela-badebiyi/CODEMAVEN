@@ -99,7 +99,13 @@ class UserVideoFeatureTest extends TestCase
 
 
       $this->actingAs($user)
-      ->visit('/videos/'.$video->slug."/edit");
+      ->visit('/videos/'.$video->slug."/edit")
+      ->type('laravel, training, tutorial', 'category')
+      ->press('Update Video Tutorial')
+      ->see('Video Successfully Updated')
+      ->seeInDatabase('videos', [
+        'category' => 'laravel, training, tutorial'
+      ]);
 
       $user->videos()->delete();
       $user->delete();
@@ -123,7 +129,7 @@ class UserVideoFeatureTest extends TestCase
       $video->slug = 'brief-introduction-to-laravel';
       $video->save();
 
-      /**
+
       $this->actingAs($user)
       ->visit('videos')
       ->press("Delete Video")
@@ -131,8 +137,8 @@ class UserVideoFeatureTest extends TestCase
         'title' => 'Learning Laravel',
         'description' => 'Not a brief introduction to laravel'
       ]);
-      **/
-      $video->delete();
+
+      //$video->delete();
       $user->delete();
     }
 }

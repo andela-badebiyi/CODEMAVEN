@@ -23,7 +23,7 @@ install:
   - php composer.phar install --dev --no-interaction
 script:
   - mkdir -p build/logs
-  - ./vendor/bin/phpunit --coverage-clover ./tests/logs/clover.xml
+  - php vendor/bin/phpunit -c phpunit.xml
 
 after_script:
   - php vendor/bin/coveralls -v
