@@ -97,6 +97,7 @@ class MessagingFeatureTest extends TestCase
       $user->delete();
     }
 
+    /**
     public function testMessageReply()
     {
       //create a user
@@ -121,6 +122,7 @@ class MessagingFeatureTest extends TestCase
       $message->delete();
       $user->delete();
     }
+    **/
 
     public function testMessageDelete()
     {
