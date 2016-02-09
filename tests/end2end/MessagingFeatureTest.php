@@ -69,6 +69,7 @@ class MessagingFeatureTest extends TestCase
       //set user settings
       $settings = new \App\Settings;
       $settings->user_id = $user->id;
+      $settings->donotnotifymessage = 1;
       $settings->save();
 
       //send message with valid data
