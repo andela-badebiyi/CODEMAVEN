@@ -50,6 +50,7 @@ class VideoRequestFeatureTest extends TestCase
       \App\VideoRequest::where('requester_email', 'bodunadebiyi@gmail.com')->delete();
     }
 
+    /**
     public function testResolveRequest()
     {
       //create a user
@@ -82,4 +83,5 @@ class VideoRequestFeatureTest extends TestCase
       \App\Video::where('title', 'PHP Tutorial')->delete();
       $user->delete();
     }
+    **/
 }

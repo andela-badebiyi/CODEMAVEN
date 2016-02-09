@@ -11,6 +11,33 @@ class AccountSettingsFeatureTest extends TestCase
      *
      * @return void
      */
+
+    public function testSettingsPage()
+    {
+      //create a user
+        $user = factory(\App\User::class)->create([
+          'name' => 'John Doe',
+          'email' => 'j_doe@gmail.com',
+          'password' => bcrypt('hayakiri'),
+          'username' => 'johndoe'
+      	]);
+
+        //create settings record in database
+        $settings = new \App\Settings;
+        $settings->donotnotifymessage = 0;
+        $settings->disablemessages = 0;
+        $settings->user_id = $user->id;
+        $settings->save();
+
+        //vist page
+        $this->actingAs($user)
+        ->visit('/settings')
+        ->see('Settings');
+
+        $user->settings()->delete();
+        $user->delete();
+    }
+
     public function testDisableMessagingOption()
     {
     	//create a user
@@ -91,7 +118,7 @@ class AccountSettingsFeatureTest extends TestCase
       	$user->delete();
     }
 
-   
+
     public function testDeleteAccount()
     {
     	//create a user
@@ -116,5 +143,5 @@ class AccountSettingsFeatureTest extends TestCase
         	'email' => 'j_doe@gmail.com'
         ]);
     }
-    
+
 }

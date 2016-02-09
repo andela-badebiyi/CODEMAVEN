@@ -6,6 +6,22 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class UserSignInTest extends TestCase
 {
+    public function testSignInLinkWhenSignedIn()
+    {
+      $user = factory(\App\User::class)->create([
+				'name' => 'John Doe',
+				'email' => 'j_doe@gmail.com',
+				'password' => bcrypt('hayakiri')
+			]);
+
+      $this->actingAs($user)
+      ->visit('/login')
+      ->seePageIs('/')
+      ->visit('/register')
+      ->seePageIs('/');
+
+      $user->delete();
+    }
 
     public function testSignInFormPage()
     {

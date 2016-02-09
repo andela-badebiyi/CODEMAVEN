@@ -33,6 +33,7 @@ class EditProfileTest extends TestCase
       ->type('Yaba, Lagos', 'location')
       ->type('Java', 'favstack')
       ->type('Live, Love, Learn...', 'bio')
+      ->attach(public_path('img/placeholder.png'), 'avatar')
       ->press('Save Details')
       ->see('Update Successful!');
 
@@ -48,4 +49,5 @@ class EditProfileTest extends TestCase
       //clean up database
       $user->delete();
     }
+
 }
