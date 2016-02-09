@@ -107,7 +107,7 @@ class VideoController extends Controller
 			$req->request_status = 1;
 			$req->resolver_id = $request->user()->id;
 			$req->save();
-			$this->sendEmailNotification($req, $video);
+			@$this->sendEmailNotification($req, $video);
 			return redirect()->back()->with('message', 'you have resolved '.$req->requester_name."'s request");
 		} else {
 			return redirect('videos')->with(['message' => 'Video Successfully Uploaded']);

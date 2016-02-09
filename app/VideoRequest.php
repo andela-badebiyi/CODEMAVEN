@@ -14,7 +14,6 @@ class VideoRequest extends Model
 
 	//mass assignable properties
 	protected $fillable = [
-	'title',
 	'description',
 	'requester_name',
 	'requester_email',
