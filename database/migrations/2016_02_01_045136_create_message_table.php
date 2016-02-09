@@ -17,7 +17,7 @@ class CreateMessageTable extends Migration
             $table->string('sender_name');
             $table->string('email');
             $table->string('subject');
-            $table->text('message');
+            $table->text('message')->nullable();
             $table->integer('status')->nullable()->default(0);
             $table->integer('reciever_id')->unsigned();
             $table->foreign('reciever_id')->references('id')->on('users');
