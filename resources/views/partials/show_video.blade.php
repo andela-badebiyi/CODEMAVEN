@@ -10,9 +10,9 @@
           <span id='like-count'>{{ count($video->likes) }}</span>
           @can('user-is-signed-in')
             @if($video->likes()->get()->contains('user_id', Auth::user()->id))
-              <a href='/video/{{$video->id}}/like' style="border-bottom:none;" id='like' class='fa fa-thumbs-down'></a>
+              <a href='/video/{{$video->id}}/like' style="border-bottom:none;" id='like' class='fa fa-thumbs-down' name='like'></a>
             @else
-              <a href='/video/{{$video->id}}/like' style="border-bottom:none;" id='like' class='fa fa-thumbs-up'></a>
+              <a href='/video/{{$video->id}}/like' style="border-bottom:none;" id='like' class='fa fa-thumbs-up' name='like'></a>
             @endif
           @endcan
       </span><br/>

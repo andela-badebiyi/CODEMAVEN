@@ -50,7 +50,7 @@ class VideoRequestFeatureTest extends TestCase
       \App\VideoRequest::where('requester_email', 'bodunadebiyi@gmail.com')->delete();
     }
 
-    /**
+
     public function testResolveRequest()
     {
       //create a user
@@ -72,16 +72,21 @@ class VideoRequestFeatureTest extends TestCase
       $this->actingAs($user)
       ->visit('/dashboard')
       ->click('resolve')
+      ->see('Resolve Request')
+      ->seePageIs('/request/'.$videorequest->id);
+
+      /**
       ->type('PHP Tutorial', 'title')
       ->type('Intro to php', 'description')
       ->type('php', 'category')
       ->type('https://www.youtube.com/watch?v=3u1fu6f8Hto', 'url')
       ->press('Upload Video Tutorial')
       ->see('you have resolved');
+      **/
 
       \App\VideoRequest::where('requester_name', 'Anonymous')->delete();
       \App\Video::where('title', 'PHP Tutorial')->delete();
       $user->delete();
     }
-    **/
+
 }

@@ -66,7 +66,7 @@ class HomeController extends Controller
     }
 
     /**
-     * Resolves a search query and fetches videos 
+     * Resolves a search query and fetches videos
      */
     public function searchVideos(Request $request)
     {
@@ -81,7 +81,7 @@ class HomeController extends Controller
 
       //fetch videos
       $videos = Video::whereRaw($search)->get();
-      
+
       return view('videos', [
         'videos' => $videos,
         'query' => $request->input('query')
@@ -97,7 +97,7 @@ class HomeController extends Controller
     private function removeStopWords($query)
     {
        //fetch predefined stopwords from json file
-       $stopWords = json_decode(file_get_contents(asset('stopwords.json')));
+       $stopWords = json_decode(file_get_contents(public_path('stopwords.json')));
 
        //break query string into array
        $query = explode(' ', $query);
@@ -109,7 +109,7 @@ class HomeController extends Controller
     /**
      * Generates the where clause query string
      *
-     * @param string $query 
+     * @param string $query
      * @return string query string
      */
     private function generateWhereClause($query)
