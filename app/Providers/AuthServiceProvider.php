@@ -31,7 +31,7 @@ class AuthServiceProvider extends ServiceProvider
         });
 
         $gate->define('user-owns-video', function($user, $video){
-          return $user->id === $video->user_id;
+          return Auth::user()->id === $video->user_id;
         });
 
         $gate->define('user-owns-message', function($user, $message){

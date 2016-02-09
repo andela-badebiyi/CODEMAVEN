@@ -25,7 +25,7 @@ class VideoController extends Controller
     	//ensure that the user is signed in
 		$this->authorize('user-is-signed-in');
 
-		//render view 
+		//render view
     	return view('videos.index', [
     		'user' => $request->user(),
     		'videos' => $request->user()->videos()->get()
@@ -57,7 +57,7 @@ class VideoController extends Controller
 		//increase video view count
 		$video->increment('view_count');
 
-		//render view 
+		//render view
 		return view('videos.show', [
 			'user' => $request->user(),
 			'video' => $video,
@@ -72,12 +72,16 @@ class VideoController extends Controller
 	 */
 	public function edit(Request $request, $slug)
 	{
+    $video = Video::where('slug', $slug)->firstOrFail();
 		//ensure that user is signed in
 		$this->authorize('user-is-signed-in');
 
+    //confirm that user owns the video
+    $this->authorize('user-owns-video', $video);
+
 		//render view
 		return view('videos.edit', [
-			'video' => Video::where('slug', $slug)->firstOrFail(),
+			'video' => $video,
 			'user' => $request->user()
 		]);
 	}
@@ -89,7 +93,7 @@ class VideoController extends Controller
     {
     	//ensure that user is signed in
 		$this->authorize('user-is-signed-in');
-		
+
 		//store video
 		$video = $request->user()->videos()->create($request->all());
 
@@ -119,7 +123,7 @@ class VideoController extends Controller
 		//ensure that user is signed in
 		$this->authorize('user-is-signed-in');
 
-		//fetch video and throq 404 error if video isnt found
+		//fetch video and throw 404 error if video isnt found
 		$video = Video::where('slug', $slug)->firstOrFail();
 
 		//confirm that user owns the video
@@ -142,7 +146,7 @@ class VideoController extends Controller
 
 	/**
 	 * Delete a video
-	 * 
+	 *
 	 * @param string $slug unique slug of video to be deleted
 	 */
 	public function destroy(Request $request, $slug)

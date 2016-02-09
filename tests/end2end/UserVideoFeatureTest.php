@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use DB;
 
 class UserVideoFeatureTest extends TestCase
 {
@@ -88,27 +89,19 @@ class UserVideoFeatureTest extends TestCase
           'password' => bcrypt('hayakiri')
       ]);
 
-      $video = $user->videos()->create([
+      $video = factory(\App\Video::class)->create([
           'title' => 'Learning Laravel',
           'description' => 'Brief Introduction to Laravel',
           'category' => 'laravel',
           'url' => 'https://www.youtube.com/watch?v=3u1fu6f8Hto',
+          'user_id' => $user->id,
+          'slug' => 'brief-introduction-to-laravel'
       ]);
 
-      $video->slug = 'brief-introduction-to-laravel';
-      $video->save();
 
-      /**
       $this->actingAs($user)
-      ->visit('/videos')
-      ->click("Edit Video")
-      ->type('Not a brief introduction to laravel', 'description')
-      ->press('submit')
-      ->see('Video Successfully Updated')
-      ->seeInDatabase('videos', [
-        'description' => 'Not a brief introduction to laravel'
-      ]);
-      **/
+      ->visit('/videos/'.$video->slug."/edit");
+
       $user->videos()->delete();
       $user->delete();
     }
@@ -140,7 +133,7 @@ class UserVideoFeatureTest extends TestCase
         'description' => 'Not a brief introduction to laravel'
       ]);
       **/
-      
+      $video->delete();
       $user->delete();
     }
 }

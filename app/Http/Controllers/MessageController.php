@@ -114,7 +114,7 @@ class MessageController extends Controller
       $recepient['subject'] = "Reply from ".$request->user()->name;
 
       //send message
-      Mail::send('mails.message_reply', $recepient, function($message) use ($recepient){
+      @Mail::send('mails.message_reply', $recepient, function($message) use ($recepient){
           $message->from('noreply@noreply.com');
           $message->to($recepient['email']);
           $message->subject($recepient['subject']);
@@ -127,7 +127,7 @@ class MessageController extends Controller
 
     /**
      * Delete a message
-     * @param integer $message_id 
+     * @param integer $message_id
      */
     public function destroy(Request $request, $message_id)
     {
@@ -152,7 +152,7 @@ class MessageController extends Controller
         $data['name'] = $recepient->name;
 
         //send message
-        Mail::send('mails.message_notification', $data, function($message) use ($recepient){
+        @Mail::send('mails.message_notification', $data, function($message) use ($recepient){
             $message->to($recepient->email);
             $message->subject('CodeMaven - You have a new message');
         });
