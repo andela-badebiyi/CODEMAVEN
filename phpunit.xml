@@ -23,10 +23,14 @@
         </testsuite>
     </testsuites>
     <filter>
-        <whitelist>
-            <directory suffix=".php">app/</directory>
-            <directory suffix=".php">./tests/Way/</directory>
-        </whitelist>
+      <whitelist>
+          <directory suffix=".php">app/Http</directory>
+      </whitelist>
+      <exclude>
+          <directory>app/Http/Controllers/Auth/</directory>
+          <directory>app/Http/Controllers/Middleware/</directory>
+          <directory>app/Http/Controllers/Requests/</directory>
+      </exclude>
     </filter>
     <php>
         <env name="APP_ENV" value="testing"/>
