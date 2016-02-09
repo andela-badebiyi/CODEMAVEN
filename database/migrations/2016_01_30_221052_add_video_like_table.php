@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class AddVideoLikeTable extends Migration
 {
@@ -12,7 +12,7 @@ class AddVideoLikeTable extends Migration
      */
     public function up()
     {
-        Schema::create('likes', function (Blueprint $table){
+        Schema::create('likes', function (Blueprint $table) {
           $table->increments('id');
           $table->integer('like')->default(0);
           $table->integer('user_id')->unsigned();

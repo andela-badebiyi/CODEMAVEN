@@ -1,11 +1,12 @@
 <?php
 
 namespace App;
+
 use Auth;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
- * Model class for User
+ * Model class for User.
  */
 class User extends Authenticatable
 {
@@ -34,12 +35,12 @@ class User extends Authenticatable
 
     public function likes()
     {
-      return $this->hasMany('App\Like');
+        return $this->hasMany('App\Like');
     }
 
     public function comments()
     {
-      return $this->hasMany('App\Comment');
+        return $this->hasMany('App\Comment');
     }
 
     public function messages()
@@ -49,39 +50,41 @@ class User extends Authenticatable
 
     public function settings()
     {
-      return $this->hasOne('App\Settings', 'user_id');
+        return $this->hasOne('App\Settings', 'user_id');
     }
 
     /**
      * Returns the total number of comments on all the videos
-     * of a particular user
+     * of a particular user.
      *
      * @return int
      */
     public function allCommentsOnVideos()
     {
-      $count = 0;
-      $alluservideos = Auth::user()->videos()->get();
+        $count = 0;
+        $alluservideos = Auth::user()->videos()->get();
 
-      foreach ($alluservideos as $video) {
-        $count += count($video->comments()->get());
-      }
-      return $count;
+        foreach ($alluservideos as $video) {
+            $count += count($video->comments()->get());
+        }
+
+        return $count;
     }
 
     /**
-     * Returns the total number of video views on all a user's videos
+     * Returns the total number of video views on all a user's videos.
      *
      * @return int
      */
     public function allVideoViews()
     {
-      $count = 0;
-      $alluservideos = Auth::user()->videos()->get();
+        $count = 0;
+        $alluservideos = Auth::user()->videos()->get();
 
-      foreach($alluservideos as $videos) {
-        $count += intval($videos->view_count);
-      }
-      return $count;
+        foreach ($alluservideos as $videos) {
+            $count += intval($videos->view_count);
+        }
+
+        return $count;
     }
 }

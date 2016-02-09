@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Model class for user's settings
+ * Model class for user's settings.
  *
  * @property int $id
  * @property int $user_id
@@ -14,8 +14,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property DateTime $created_at
  * @property DateTime $updated_at
  */
-
 class Settings extends Model
 {
-
 }

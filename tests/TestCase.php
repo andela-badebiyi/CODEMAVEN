@@ -1,10 +1,12 @@
 <?php
-use Way\Tests\ModelHelpers;
+
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Way\Tests\ModelHelpers;
+
 class TestCase extends Illuminate\Foundation\Testing\TestCase
 {
-  use ModelHelpers;
-  use DatabaseMigrations;
+    use ModelHelpers;
+    use DatabaseMigrations;
     /**
      * The base URL to use while testing the application.
      *

@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class LikeVideoFeatureTest extends TestCase
 {
@@ -15,16 +12,16 @@ class LikeVideoFeatureTest extends TestCase
     {
         //create a user
         $user = factory(\App\User::class)->create([
-          'name' => 'John Doe',
-          'email' => 'j_doe@gmail.com',
+          'name'     => 'John Doe',
+          'email'    => 'j_doe@gmail.com',
           'password' => bcrypt('hayakiri'),
-          'username' => 'jdoe_1'
+          'username' => 'jdoe_1',
         ]);
 
         //create a videos
         $video = factory(\App\Video::class)->create([
-          'title' => 'learning php',
-          'user_id' => $user->id
+          'title'   => 'learning php',
+          'user_id' => $user->id,
         ]);
 
         //like video

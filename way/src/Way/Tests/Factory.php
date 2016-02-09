@@ -1,33 +1,37 @@
-<?php namespace Way\Tests;
+<?php
 
-use \Illuminate\Database\DatabaseManager;
+namespace Way\Tests;
+
+use Illuminate\Database\DatabaseManager;
 use Illuminate\Support\Str;
 
-class ModelNotFoundException extends \Exception {}
+class ModelNotFoundException extends \Exception
+{
+}
 
-class Factory {
-
+class Factory
+{
     /**
-     * Model instance
+     * Model instance.
      */
     protected $class;
 
     /**
-     * Pluralized form of classname
+     * Pluralized form of classname.
      *
      * @var string
      */
     protected $tableName;
 
     /**
-     * DB Layer
+     * DB Layer.
      *
      * @var Illuminate\Database\DatabaseManager
      */
     protected $db;
 
     /**
-     * Remembers table fields for factories
+     * Remembers table fields for factories.
      *
      * @var array
      */
@@ -35,26 +39,25 @@ class Factory {
 
     /**
      * Whether models are being
-     * saved to the DB
+     * saved to the DB.
      *
-     * @var boolean
+     * @var bool
      */
     protected static $isSaving = false;
 
     /**
-     * Stores the namespace root for the class
+     * Stores the namespace root for the class.
      *
      * @var string
      */
     protected static $rootNamespace;
 
     /**
-     * For retrieving dummy data
+     * For retrieving dummy data.
      *
      * @var DataStore
      */
     protected $dataStore;
-
 
     /**
      * @param DatabaseManager $db
@@ -63,17 +66,18 @@ class Factory {
     public function __construct(DatabaseManager $db = null, DataStore $dataStore = null)
     {
         $this->db = $db ?: \App::make('db');
-        $this->dataStore = $dataStore ?: new DataStore;
+        $this->dataStore = $dataStore ?: new DataStore();
     }
 
     /**
      * Create a factory AND save it to the DB.
      *
-     * @param  string $class
-     * @param  array  $columns
-     * @return boolean
+     * @param string $class
+     * @param array  $columns
+     *
+     * @return bool
      */
-    public static function create($class, array $columns = array())
+    public static function create($class, array $columns = [])
     {
         static::$isSaving = true;
 
@@ -87,13 +91,14 @@ class Factory {
     }
 
     /**
-     * Create factory and return its attributes as an array
+     * Create factory and return its attributes as an array.
      *
-     * @param  string $class
-     * @param  array  $columns
+     * @param string $class
+     * @param array  $columns
+     *
      * @return array
      */
-    public static function attributesFor($class, array $columns = array())
+    public static function attributesFor($class, array $columns = [])
     {
         return static::make($class, $columns)->toArray();
     }
@@ -101,24 +106,25 @@ class Factory {
     /**
      * Create a new factory. Factory::post() is equivalent
      * to Factory::make('Post'). Use this method when you need to
-     * specify a namespace: Factory::make('Models\Post');
+     * specify a namespace: Factory::make('Models\Post');.
      *
      * You can also override fields. This is helpful for
      * testing validations: Factory::make('Post', ['title' => null])
      *
      * @param  $class
-     * @param  array $columns Overrides
+     * @param array $columns Overrides
+     *
      * @return object
      */
-    public static function make($class, $columns = array())
+    public static function make($class, $columns = [])
     {
-        $instance = new static;
+        $instance = new static();
 
         return $instance->fire($class, $columns);
     }
 
     /**
-     * Saves the root namespace for a class
+     * Saves the root namespace for a class.
      *
      * @param $class
      */
@@ -129,14 +135,14 @@ class Factory {
     }
 
     /**
-     * Set dummy data on fields
+     * Set dummy data on fields.
      *
      * @param $class Name of class to create factory for
      * @param $overrides
      *
      * @return object
      */
-    public function fire($class, array $overrides = array())
+    public function fire($class, array $overrides = [])
     {
         $this->tableName = $this->parseTableName($class);
         $this->class = $this->createModel($class);
@@ -157,9 +163,10 @@ class Factory {
     }
 
     /**
-     * Calulate the table name
+     * Calulate the table name.
      *
-     * @param  string $class
+     * @param string $class
+     *
      * @return string
      */
     protected function parseTableName($class)
@@ -170,27 +177,31 @@ class Factory {
     }
 
     /**
-     * Initialize the given model
+     * Initialize the given model.
      *
-     * @param  string $class
-     * @return object
+     * @param string $class
+     *
      * @throws ModelNotFoundException
+     *
+     * @return object
      */
     protected function createModel($class)
     {
         $class = Str::studly($class);
 
-        if (class_exists($class))
-            return new $class;
+        if (class_exists($class)) {
+            return new $class();
+        }
 
-        throw new ModelNotFoundException;
+        throw new ModelNotFoundException();
     }
 
     /**
      * Is the model namespaced?
      *
-     * @param  string $class
-     * @return boolean
+     * @param string $class
+     *
+     * @return bool
      */
     protected function isNamespaced($class)
     {
@@ -202,20 +213,21 @@ class Factory {
      * override default values with them.
      *
      * @param array $overrides
+     *
      * @return void
      */
     protected function applyOverrides(array $overrides)
     {
-        foreach ($overrides as $field => $value)
-        {
-           $this->class->$field = $value;
+        foreach ($overrides as $field => $value) {
+            $this->class->$field = $value;
         }
     }
 
     /**
      * Fetch the table fields for the class.
      *
-     * @param  string $tableName
+     * @param string $tableName
+     *
      * @return array
      */
     public function getColumns($tableName)
@@ -223,8 +235,7 @@ class Factory {
         // We only want to fetch the table details
         // once. We'll store these fields with a
         // $columns property for future fetching.
-        if (isset(static::$columns[$this->tableName]))
-        {
+        if (isset(static::$columns[$this->tableName])) {
             return static::$columns[$this->tableName];
         }
 
@@ -238,16 +249,14 @@ class Factory {
     }
 
     /**
-     * Set fields for object
+     * Set fields for object.
      *
      * @param array $columns
      */
-    protected function setColumns(Array $columns)
+    protected function setColumns(array $columns)
     {
-        foreach($columns as $key => $col)
-        {
-            if ($relation = $this->hasForeignKey($key))
-            {
+        foreach ($columns as $key => $col) {
+            if ($relation = $this->hasForeignKey($key)) {
                 $this->class->$key = $this->createRelationship($relation);
                 continue;
             }
@@ -256,19 +265,21 @@ class Factory {
     }
 
     /**
-     * Set single column
+     * Set single column.
      *
      * @param string $name
      * @param string $col
+     *
      * @throws \Exception
      */
     protected function setColumn($name, $col)
     {
-        if ($name === 'id') return;
+        if ($name === 'id') {
+            return;
+        }
 
         $method = $this->getFakeMethodName($name, $col);
-        if (method_exists($this->dataStore, $method))
-        {
+        if (method_exists($this->dataStore, $method)) {
             return $this->dataStore->{$method}();
         }
 
@@ -276,9 +287,9 @@ class Factory {
     }
 
     /**
-     * Build the faker method
+     * Build the faker method.
      *
-     * @param  string $field
+     * @param string $field
      * @param string $col
      *
      * @return string
@@ -293,26 +304,29 @@ class Factory {
         // If we couldn't, we'll instead grab
         // the datatype for the field, and
         // generate a value to fit that.
-        if (!$method) $method = $this->getDataType($col);
+        if (!$method) {
+            $method = $this->getDataType($col);
+        }
 
         // Build the method name
-        return 'get' . ucwords($method);
+        return 'get'.ucwords($method);
     }
 
     /**
-     * Search for special field names
+     * Search for special field names.
      *
-     * @param  string $field
+     * @param string $field
+     *
      * @return mixed
      */
     protected function checkForSpecialField($field)
     {
-        $special = array(
+        $special = [
             'name', 'email', 'phone',
             'age', 'address', 'city',
             'state', 'zip', 'street',
-            'website', 'title'
-        );
+            'website', 'title',
+        ];
 
         return in_array($field, $special) ? $field : false;
     }
@@ -320,19 +334,18 @@ class Factory {
     /**
      * Is the field a foreign key?
      *
-     * @param  string $field
+     * @param string $field
+     *
      * @return mixed
      */
     protected function hasForeignKey($field)
     {
         // Do we need to create a relationship?
         // Look for a field, like author_id or author-id
-        if (static::$isSaving and preg_match('/([A-z]+)[-_]id$/i', $field, $matches))
-        {
+        if (static::$isSaving and preg_match('/([A-z]+)[-_]id$/i', $field, $matches)) {
             // We'll assume that this is a true foreign key, if the field is foo_id
             // and a corresponding Foo or Namespace\Foo class exists
-            if ($this->confirmForeignKeyReferencesRelationship($matches[1]))
-            {
+            if ($this->confirmForeignKeyReferencesRelationship($matches[1])) {
                 return $matches[1];
             }
         }
@@ -341,9 +354,10 @@ class Factory {
     }
 
     /**
-     * Create a new factory and return its id
+     * Create a new factory and return its id.
      *
-     * @param  string $class
+     * @param string $class
+     *
      * @return id
      */
     protected function createRelationship($class)
@@ -352,9 +366,10 @@ class Factory {
     }
 
     /**
-     * Calculate the data type for the field
+     * Calculate the data type for the field.
      *
-     * @param  string $col
+     * @param string $col
+     *
      * @return string
      */
     public function getDataType($col)
@@ -362,26 +377,26 @@ class Factory {
         return $col->getType()->getName();
     }
 
-
     /**
      * Handle dynamic factory creation calls,
-     * like Factory::user() or Factory::post()
+     * like Factory::user() or Factory::post().
      *
-     * @param  string $class The model to mock
-     * @param  array $overrides
+     * @param string $class     The model to mock
+     * @param array  $overrides
+     *
      * @return object
      */
     public static function __callStatic($class, $overrides)
     {
         // A litle weird. TODO
         $overrides = isset($overrides[0]) ? $overrides[0] : $overrides;
-        $instance = new static;
+        $instance = new static();
 
         return $instance->fire($class, $overrides);
     }
 
     /**
-     * Determines if field_ID refers to a relationship
+     * Determines if field_ID refers to a relationship.
      *
      * @param $class
      *
@@ -391,5 +406,4 @@ class Factory {
     {
         return class_exists($class) or class_exists(static::$rootNamespace."\\$class");
     }
-
 }

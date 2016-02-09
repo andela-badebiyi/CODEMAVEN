@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
-
 class VidRequest extends Request
 {
     /**
@@ -23,9 +21,9 @@ class VidRequest extends Request
      */
     public function rules()
     {
-      return [
-        'description' => 'required',
-        'requester_name' => 'required',
+        return [
+        'description'     => 'required',
+        'requester_name'  => 'required',
         'requester_email' => 'required|email',
       ];
     }

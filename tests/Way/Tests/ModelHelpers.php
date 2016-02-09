@@ -1,9 +1,11 @@
-<?php namespace Way\Tests;
+<?php
+
+namespace Way\Tests;
 
 use Mockery;
 
-trait ModelHelpers {
-
+trait ModelHelpers
+{
     public function tearDown()
     {
         Mockery::close();
@@ -69,29 +71,28 @@ trait ModelHelpers {
 
         $class = Mockery::mock($class."[$type]");
 
-        switch(count($args))
-        {
-            case 1 :
+        switch (count($args)) {
+            case 1:
                 $class->shouldReceive($type)
                       ->once()
-                      ->with('/' . str_singular($relationship) . '/i');
+                      ->with('/'.str_singular($relationship).'/i');
                 break;
-            case 2 :
+            case 2:
                 $class->shouldReceive($type)
                       ->once()
-                      ->with('/' . str_singular($relationship) . '/i', $args[1]);
+                      ->with('/'.str_singular($relationship).'/i', $args[1]);
                 break;
-            case 3 :
+            case 3:
                 $class->shouldReceive($type)
                       ->once()
-                      ->with('/' . str_singular($relationship) . '/i', $args[1], $args[2]);
+                      ->with('/'.str_singular($relationship).'/i', $args[1], $args[2]);
                 break;
-            case 4 :
+            case 4:
                 $class->shouldReceive($type)
                       ->once()
-                      ->with('/' . str_singular($relationship) . '/i', $args[1], $args[2], $args[3]);
+                      ->with('/'.str_singular($relationship).'/i', $args[1], $args[2], $args[3]);
                 break;
-            default :
+            default:
                 $class->shouldReceive($type)
                       ->once();
                 break;
@@ -100,17 +101,16 @@ trait ModelHelpers {
         $class->$relationship();
     }
 
-    public function getArgumentsRelationship($relationship, $class, $type) {
+    public function getArgumentsRelationship($relationship, $class, $type)
+    {
         $mocked = Mockery::mock($class."[$type]");
 
         $mocked->shouldReceive($type)
               ->once()
-              ->andReturnUsing(function ()
-              {
+              ->andReturnUsing(function () {
                 return func_get_args();
               });
 
         return $mocked->$relationship();
     }
-
 }

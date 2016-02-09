@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
-
 class UpdateProfilePostRequest extends Request
 {
     /**
@@ -25,18 +23,18 @@ class UpdateProfilePostRequest extends Request
     {
         return [
             'occupation' => 'max:100',
-            'location' => 'max:140',
-            'dob' => 'date',
-            'avatar' => 'mimes:jpeg,jpg,png,gif,bmp|max:3000'
+            'location'   => 'max:140',
+            'dob'        => 'date',
+            'avatar'     => 'mimes:jpeg,jpg,png,gif,bmp|max:3000',
         ];
     }
 
     public function messages()
     {
         return [
-            'dob.date' => 'You entered an invalid date of birth (Format: "YYYY-mm-dd")',
+            'dob.date'     => 'You entered an invalid date of birth (Format: "YYYY-mm-dd")',
             'avatar.mimes' => 'Picture format is invalid',
-            'avatar.max' => 'File too large' 
+            'avatar.max'   => 'File too large',
         ];
     }
 }

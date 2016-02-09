@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class AddCommentTable extends Migration
 {
@@ -12,7 +12,7 @@ class AddCommentTable extends Migration
      */
     public function up()
     {
-        Schema::create('comments', function(Blueprint $table){
+        Schema::create('comments', function (Blueprint $table) {
           $table->increments('id');
           $table->string('author');
           $table->text('body');

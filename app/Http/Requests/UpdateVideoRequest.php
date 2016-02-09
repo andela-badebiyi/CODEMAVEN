@@ -2,8 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\Http\Requests\Request;
-
 class UpdateVideoRequest extends Request
 {
     /**
@@ -24,7 +22,7 @@ class UpdateVideoRequest extends Request
     public function rules()
     {
         return [
-            'url' => 'url'
+            'url' => 'url',
         ];
     }
 }

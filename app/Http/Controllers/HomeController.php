@@ -1,14 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\User;
 use App\Video;
-use App\Http\Requests;
 use Illuminate\Http\Request;
 
 /**
  * Controller class for the homepage and other actions
- * that doesn't require authentication
+ * that doesn't require authentication.
  */
 class HomeController extends Controller
 {
@@ -23,11 +23,11 @@ class HomeController extends Controller
     }
 
     /**
-     * Shows the all videos page
+     * Shows the all videos page.
      */
     public function allVideos()
     {
-      //fetch all videos
+        //fetch all videos
       $videos = Video::all();
 
       //render view page
@@ -35,13 +35,13 @@ class HomeController extends Controller
     }
 
     /**
-     * Shows the user profile page
+     * Shows the user profile page.
      *
      * @param string $username The username of the user profile to be displayed
      */
     public function userProfile($username)
     {
-      //fetch user
+        //fetch user
       $user = User::where('username', $username)->firstOrFail();
 
       //render view
@@ -49,28 +49,28 @@ class HomeController extends Controller
     }
 
     /**
-     * List a users videos
+     * List a users videos.
      *
      * @param string $username The username of the user's video to be displayed
      */
     public function userVideos($username)
     {
-      //fetch user
+        //fetch user
       $user = User::where('username', $username)->firstOrFail();
 
       //render view passing the user and videos object to the view
       return view('user_videos', [
-        'user' => $user,
-        'videos' => $user->videos()->get()
+        'user'   => $user,
+        'videos' => $user->videos()->get(),
       ]);
     }
 
     /**
-     * Resolves a search query and fetches videos
+     * Resolves a search query and fetches videos.
      */
     public function searchVideos(Request $request)
     {
-      //remove whitespaces fromo query
+        //remove whitespaces fromo query
       $query = trim($request->input('query'));
 
       //remove stop words from query
@@ -82,21 +82,22 @@ class HomeController extends Controller
       //fetch videos
       $videos = Video::whereRaw($search)->get();
 
-      return view('videos', [
+        return view('videos', [
         'videos' => $videos,
-        'query' => $request->input('query')
+        'query'  => $request->input('query'),
         ]);
     }
 
     /**
-     * Removes stop words from search query
+     * Removes stop words from search query.
      *
      * @param string $query
+     *
      * @return array an array of the keywords
      */
     private function removeStopWords($query)
     {
-       //fetch predefined stopwords from json file
+        //fetch predefined stopwords from json file
        $stopWords = json_decode(file_get_contents(public_path('stopwords.json')));
 
        //break query string into array
@@ -107,18 +108,20 @@ class HomeController extends Controller
     }
 
     /**
-     * Generates the where clause query string
+     * Generates the where clause query string.
      *
      * @param string $query
+     *
      * @return string query string
      */
     private function generateWhereClause($query)
     {
-      $output = "";
-      for($i = 0; $i < count($query); $i++) {
-        $output .= "title like '%".$query[$i]."%' ";
-        $output .= $i < (count($query) - 1) ? 'or ' : '';
-      }
-      return $output;
+        $output = '';
+        for ($i = 0; $i < count($query); $i++) {
+            $output .= "title like '%".$query[$i]."%' ";
+            $output .= $i < (count($query) - 1) ? 'or ' : '';
+        }
+
+        return $output;
     }
 }

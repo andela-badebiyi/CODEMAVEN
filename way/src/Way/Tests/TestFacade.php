@@ -1,18 +1,21 @@
-<?php namespace Way\Tests;
+<?php
 
-abstract class TestFacade extends \PHPUnit_Framework_Assert {
+namespace Way\Tests;
 
+abstract class TestFacade extends \PHPUnit_Framework_Assert
+{
     /**
-     * Singleton
+     * Singleton.
+     *
      * @var array
      */
-    protected static $instance = array();
+    protected static $instance = [];
 
     /**
-     * Intialization
+     * Intialization.
      *
      * @param string $methodName
-     * @param array $args
+     * @param array  $args
      */
     protected function fire($methodName, $args)
     {
@@ -20,32 +23,33 @@ abstract class TestFacade extends \PHPUnit_Framework_Assert {
 
         // If the assertion exists, run it
         // Otherwise, throw an exception.
-        if (method_exists(__CLASS__, $methodName))
-        {
+        if (method_exists(__CLASS__, $methodName)) {
             return $this->callAssertion(__CLASS__, $methodName, $args);
         }
 
-        throw new \BadMethodCallException;
+        throw new \BadMethodCallException();
     }
 
     /**
-     * Calls PHPUnit assertion
+     * Calls PHPUnit assertion.
      *
-     * @param  string  $class
-     * @param  string  $methodName
-     * @param  array   $args
+     * @param string $class
+     * @param string $methodName
+     * @param array  $args
+     *
      * @return mixed
      */
     protected function callAssertion($class, $methodName, $args)
     {
-        return call_user_func_array(array($class, $methodName), $args);
+        return call_user_func_array([$class, $methodName], $args);
     }
 
     /**
      * Handle dynamic, static calls to the object.
      *
-     * @param  string  $methodName
-     * @param  array   $args
+     * @param string $methodName
+     * @param array  $args
+     *
      * @return Should
      */
     public static function __callStatic($methodName, array $args)
@@ -56,7 +60,8 @@ abstract class TestFacade extends \PHPUnit_Framework_Assert {
     }
 
     /**
-     * Register or get singleton
+     * Register or get singleton.
+     *
      * @return TestFacade
      */
     public static function getInstance()
@@ -65,19 +70,19 @@ abstract class TestFacade extends \PHPUnit_Framework_Assert {
 
         // We need to make sure that both Assert
         // and Should can be used simulataneously.
-        if (! isset(static::$instance[$class]))
-        {
-            static::$instance[$class] = new static;
+        if (!isset(static::$instance[$class])) {
+            static::$instance[$class] = new static();
         }
-
 
         return static::$instance[$class];
     }
 
     /**
-     * Determines whether called method is an alias
-     * @param  string $methodName
-     * @return boolean
+     * Determines whether called method is an alias.
+     *
+     * @param string $methodName
+     *
+     * @return bool
      */
     protected function isAnAlias($methodName)
     {
@@ -85,8 +90,10 @@ abstract class TestFacade extends \PHPUnit_Framework_Assert {
     }
 
     /**
-     * Register new aliases
-     * @param  array  $aliases
+     * Register new aliases.
+     *
+     * @param array $aliases
+     *
      * @return void
      */
     public function registerAliases(array $aliases)
@@ -95,8 +102,10 @@ abstract class TestFacade extends \PHPUnit_Framework_Assert {
     }
 
     /**
-     * Calculate the correct PHPUnit assertion name
-     * @param  string $methodName
+     * Calculate the correct PHPUnit assertion name.
+     *
+     * @param string $methodName
+     *
      * @return string
      */
     abstract protected function getMethod($methodName);

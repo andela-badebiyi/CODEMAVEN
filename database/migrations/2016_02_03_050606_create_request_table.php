@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
 class CreateRequestTable extends Migration
 {
@@ -12,7 +12,7 @@ class CreateRequestTable extends Migration
      */
     public function up()
     {
-        Schema::create('videorequests', function(Blueprint $table){
+        Schema::create('videorequests', function (Blueprint $table) {
           $table->increments('id');
           $table->string('description');
           $table->string('requester_name');

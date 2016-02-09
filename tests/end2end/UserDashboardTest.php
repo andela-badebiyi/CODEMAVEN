@@ -1,8 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class UserDashboardTest extends TestCase
 {
@@ -19,19 +16,19 @@ class UserDashboardTest extends TestCase
 
     public function testDashboardAndLinksOnPage()
     {
-      $user = factory(\App\User::class)->create([
-				'name' => 'John Doe',
-				'email' => 'j_doe@gmail.com',
-				'password' => bcrypt('hayakiri')
-			]);
+        $user = factory(\App\User::class)->create([
+                'name'     => 'John Doe',
+                'email'    => 'j_doe@gmail.com',
+                'password' => bcrypt('hayakiri'),
+            ]);
 
-      $settings = new \App\Settings;
-      $settings->donotnotifymessage = 0;
-      $settings->disablemessages = 0;
-      $settings->user_id = $user->id;
-      $settings->save();
+        $settings = new \App\Settings();
+        $settings->donotnotifymessage = 0;
+        $settings->disablemessages = 0;
+        $settings->user_id = $user->id;
+        $settings->save();
 
-      $this->actingAs($user)
+        $this->actingAs($user)
       ->visit('/dashboard')
       ->see('dashboard')
       ->click('Videos')
@@ -45,7 +42,7 @@ class UserDashboardTest extends TestCase
       ->click('Account Settings')
       ->seePageIs('/settings');
 
-      $user->settings()->delete();
-      $user->delete();
+        $user->settings()->delete();
+        $user->delete();
     }
 }
