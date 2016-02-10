@@ -104,6 +104,7 @@ class VideoController extends Controller
 		$video->save();
 
 		//if you are resolving a video tutorial request, send an email notification
+    //@codeCoverageIgnoreStart
 		if($request->has('request_id')){
 			$req = VideoRequest::find($request->input('request_id'));
 			$req->request_status = 1;
@@ -114,6 +115,7 @@ class VideoController extends Controller
 		} else {
 			return redirect('videos')->with(['message' => 'Video Successfully Uploaded']);
 		}
+    //@codeCoverageIgnoreEnd
     }
 
     /**
@@ -206,6 +208,8 @@ class VideoController extends Controller
 	 * @param Video $video video model instance
 	 * @return null
 	 */
+
+   //@codeCoverageIgnoreStart
 	private function sendEmailNotification($recepient, $video)
 	{
 		//array that would be passed to the view
@@ -220,4 +224,5 @@ class VideoController extends Controller
             $message->subject($data['subject']);
         });
 	}
+  //@codeCoverageIgnoreEnd
 }
