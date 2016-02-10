@@ -28,7 +28,7 @@ class HomeController extends Controller
     public function allVideos()
     {
         //fetch all videos
-      $videos = \App\Video::all();
+      $videos = Video::all();
 
       //render view page
       return view('videos', ['videos' => $videos]);
