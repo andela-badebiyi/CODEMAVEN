@@ -53,4 +53,24 @@ class UserSignInTest extends TestCase
 
 			$user->delete();
 		}
+
+    public function testForgotPasswordLink()
+    {
+      $this->visit('/login')
+			->click('Forgot password')
+      ->see('Forgot Password');
+    }
+
+    public function testSocialSignInLinks()
+    {
+      //make requests and confirm redirection
+      $this->call('get', '/login/facebook');
+      $this->assertResponseStatus(302);
+
+      $this->call('get', '/login/github');
+      $this->assertResponseStatus(302);
+
+      $this->call('get', '/login/twitter');
+      $this->assertResponseStatus(302);
+    }
 }

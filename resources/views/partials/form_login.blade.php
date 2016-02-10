@@ -25,6 +25,6 @@
 
     <div class="field" style="margin-top:1em;">
         <input type="submit" name='login' value="Login"><br/>
-        <a href='/password/reset' style="background-color:#fff;">Forgot password?</a>
+        <a href='/password/reset' style="background-color:#fff;">Forgot password</a>
     </div>
 </form>

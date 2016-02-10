@@ -10,6 +10,7 @@ use App\Http\Requests;
 use App\Http\Requests\UploadVideoRequest;
 use App\Http\Requests\UpdateVideoRequest;
 use App\Http\Controllers\Controller;
+use App\Http\MiddleWare\Authenticate;
 
 /**
  * Controller class that handles the uploading, editing
@@ -37,6 +38,7 @@ class VideoController extends Controller
      */
     public function create(Request $request)
     {
+
     	//ensure that the user is signed in
 		$this->authorize('user-is-signed-in');
 
