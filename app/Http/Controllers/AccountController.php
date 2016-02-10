@@ -17,6 +17,9 @@ use App\Http\Controllers\Controller;
  *
  */
 
+/**
+ * @codeCoverageIgnore
+ */
 class AccountController extends Controller
 {
     /**
