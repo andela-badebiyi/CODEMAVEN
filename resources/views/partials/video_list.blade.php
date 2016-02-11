@@ -24,6 +24,7 @@
           </span>
         </div>
       </p>
+      @if(!isset($hide_options))
       @can('user-owns-video', $video)
         <a class="button-vid" href="{!! route('videos.edit', ['slug' => $video->slug]) !!}"
           style='background-color:#5bc0de'>
@@ -35,6 +36,7 @@
           </button>
         {{ Form::close() }}
       @endcan
+      @endif
       <a class="button-vid" href="{!! route('videos.show', ['slug' => $video->slug]) !!}">
         <i class='fa fa-play'></i>  <span>Watch now</span>
       </a>

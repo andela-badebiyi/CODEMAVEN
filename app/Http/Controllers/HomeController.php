@@ -31,7 +31,7 @@ class HomeController extends Controller
       $videos = Video::all();
 
       //render view page
-      return view('videos', ['videos' => $videos]);
+      return view('videos', ['videos' => $videos, 'hide_options' => true]);
     }
 
     /**
@@ -62,6 +62,7 @@ class HomeController extends Controller
       return view('user_videos', [
         'user'   => $user,
         'videos' => $user->videos()->get(),
+        'hide_options' => true
       ]);
     }
 
