@@ -86,6 +86,7 @@ class HomeController extends Controller
         return view('videos', [
         'videos' => $videos,
         'query'  => $request->input('query'),
+        'hide_options' => true
         ]);
     }
 
