@@ -7,7 +7,7 @@ use App\Http\Requests\UploadVideoRequest;
 use App\Video;
 use App\VideoRequest;
 use Illuminate\Http\Request;
-use Mail;
+use App\Notifier\MailNotification;
 
 /**
  * Controller class that handles the uploading, editing
@@ -218,15 +218,13 @@ class VideoController extends Controller
         //array that would be passed to the view
         $data['email'] = $recepient->requester_email;
         $data['name'] = $recepient->requester_name;
-        $data['subject'] = 'Code-Maven: Your video request has been granted';
-        $data['link'] = url('/videos/'.$video->slug);
+        $data['subject'] = 'Code-Maven:: Your video request has been granted';
+        $data['body'] = "Your request has been resolved by one of our Maven's here is the link to the video ".url('/videos/'.$video->slug);
 
-        //send email to recepient
-        Mail::send('mails.request_notification', $data, function ($message) use ($data) {
-            $message->to($data['email']);
-            $message->subject($data['subject']);
-        });
+        //send email notification to recepient
+        $notification = new MailNotification($data);
+        $notification->send();
     }
 
-  //@codeCoverageIgnoreEnd
+    //@codeCoverageIgnoreEnd
 }

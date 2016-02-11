@@ -45,5 +45,9 @@
 <style>
   .content-grid{
     border: groove medium #ccc;
+    border-radius: 6px 6px 6px 6px;
+  }
+  p{
+    margin: 0 0 0 0 !important;
   }
 </style>

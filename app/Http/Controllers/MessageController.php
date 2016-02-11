@@ -8,6 +8,7 @@ use App\User;
 use DB;
 use Illuminate\Http\Request;
 use Mail;
+use App\Notifier\MailNotification;
 
 /**
  * Controller class that controls the messaging feature.
@@ -107,16 +108,14 @@ class MessageController extends Controller
     public function sendReply(Request $request)
     {
         //construct associative array that would passed to view file
-      $recepient['email'] = $request->input('email');
+        $recepient['name'] = $request->input('name');
+        $recepient['email'] = $request->input('email');
         $recepient['body'] = $request->input('message');
-        $recepient['subject'] = 'Reply from '.$request->user()->name;
+        $recepient['subject'] = 'CodeMaven:: You have a message reply from '.$request->user()->name;
 
-      //send message
-      @Mail::send('mails.message_reply', $recepient, function ($message) use ($recepient) {
-          $message->from('noreply@noreply.com');
-          $message->to($recepient['email']);
-          $message->subject($recepient['subject']);
-      });
+        //send Notification
+        $notification = new MailNotification($recepient);
+        $notification->send();
 
       //redirect back with a succcess message
       return redirect()->back()->with('message', 'Reply Sent!');
@@ -146,14 +145,17 @@ class MessageController extends Controller
     private function sendNotification($recepient)
     {
         if ($recepient->settings()->first()->donotnotifymessage == 0) {
-            //construct associative array that would passed to view file
-        $data['name'] = $recepient->name;
 
-        //send message
-        @Mail::send('mails.message_notification', $data, function ($message) use ($recepient) {
-            $message->to($recepient->email);
-            $message->subject('CodeMaven - You have a new message');
-        });
+            //construct associative array that would passed to view file
+            $data['name'] = $recepient->name;
+            $data['email'] = $recepient->email;
+            $data['subject'] = 'CodeMaven:: You have a new message';
+            $data['body'] = 'You have receieved a new message, check your code maven account to view';
+
+            //send Notification
+            $notification = new MailNotification($data);
+            $notification->send();
+
         }
     }
 }
