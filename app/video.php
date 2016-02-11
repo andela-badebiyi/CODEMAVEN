@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Video extends Model
+class video extends Model
 {
     /**
      * The attributes that are mass assignable.
