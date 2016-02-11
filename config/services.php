@@ -38,19 +38,19 @@ return [
     'github' => [
         'client_id'     => env('GITHUB_CLIENT_ID'),
         'client_secret' => env('GITHUB_CLIENT_SECRET'),
-        'redirect'      => 'http://code.maven.com/callback/github',
+        'redirect'      => 'http://codemaven.herokuapp.com/callback/github',
     ],
 
     'twitter' => [
         'client_id'     => env('TWITTER_CLIENT_ID'),
         'client_secret' => env('TWITTER_CLIENT_SECRET'),
-        'redirect'      => 'http://code.maven.com/callback/twitter',
+        'redirect'      => 'http://codemaven.herokuapp.com/callback/twitter',
     ],
 
     'facebook' => [
         'client_id'     => env('FACEBOOK_CLIENT_ID'),
         'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
-        'redirect'      => 'http://code.maven.com/callback/facebook',
+        'redirect'      => 'http://codemaven.herokuapp.com/callback/facebook',
     ],
 
 ];
