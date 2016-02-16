@@ -2,7 +2,8 @@
 
 namespace App\Helpers;
 
-trait myhelpers{
+trait myhelpers
+{
     /**
      * Constructs the associative array that would supplied to the 
      * user model's update method.
@@ -37,7 +38,7 @@ trait myhelpers{
         $res = \Cloudinary::config([
           'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
           'api_key'    => env('CLOUDINARY_API_KEY'),
-          'api_secret' => env('CLOUDINARY_API_SECRET')
+          'api_secret' => env('CLOUDINARY_API_SECRET'),
         ]);
 
         //upload file
@@ -55,5 +56,3 @@ trait myhelpers{
         return $upload;
     }
 }
-
-?>
