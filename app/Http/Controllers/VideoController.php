@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\myhelpers;
 use App\Http\Requests\UpdateVideoRequest;
 use App\Http\Requests\UploadVideoRequest;
 use App\Notifier\MailNotification;
 use App\Video;
 use App\VideoRequest;
 use Illuminate\Http\Request;
-use App\Helpers\myhelpers;
 
 /**
  * Controller class that handles the uploading, editing
@@ -17,6 +17,7 @@ use App\Helpers\myhelpers;
 class VideoController extends Controller
 {
     use myhelpers;
+
     /**
      * Displays list of videos.
      */
