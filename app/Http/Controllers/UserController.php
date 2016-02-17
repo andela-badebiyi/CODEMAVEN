@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\myhelpers;
 use App\Http\Requests;
 use App\Http\Requests\UpdateProfilePostRequest;
 use App\User;
 use App\VideoRequest;
 use Illuminate\Http\Request;
-use App\Helpers\myhelpers;
 
 /**
  * Controller class that controls all the features that are restricted
@@ -16,6 +16,7 @@ use App\Helpers\myhelpers;
 class UserController extends Controller
 {
     use myhelpers;
+
     /**
      * Ensures that only signed in users has access to this class' functions.
      */

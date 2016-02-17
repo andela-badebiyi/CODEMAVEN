@@ -21,11 +21,11 @@ class CommentController extends Controller
   public function store(Request $request, $video_id, Comment $comment)
   {
       if (Auth::check()) {
-        $this->validate($request, [
+          $this->validate($request, [
         'body' => 'required',
       ]);
       } else {
-        $this->validate($request, [
+          $this->validate($request, [
         'author' => 'required',
         'body'   => 'required',
       ]);
