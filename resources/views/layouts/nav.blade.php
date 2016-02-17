@@ -1,6 +1,6 @@
 <!-- Header -->
 <header id="header" class="alt" style="background-color:#000;">
-	<h1><a href="/">CodeMaven</a> <span style='color:#e89980;'>by Bodunde</span></h1>
+	<h1> <img src='{!! asset("img/logo123.png") !!}' width=15 style="margin-top:12px; float:left;" /> <a href="/"> CodeMaven</a> <span style='color:#e89980;'>by Bodunde</span></h1>
 	<nav id="nav">
 		<ul>
 			<li>

@@ -12,6 +12,7 @@
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="{!! asset('css/bootstrap.min.css') !!}" />
 		<link rel="stylesheet" href="{!! asset('css/main.css') !!}" />
+		<link rel="shortcut icon" href="{{{ asset('img/logo123.png') }}}">
 		@yield('css')
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 	</head>
@@ -21,7 +22,7 @@
 		@yield('content')
 		</div>
 
-					<!-- Footer -->
+		<!-- Footer -->
 		<div id="footer">
 			<ul class="icons">
 				<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
