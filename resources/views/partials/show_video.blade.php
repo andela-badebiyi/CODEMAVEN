@@ -51,12 +51,12 @@
         @if(!Auth::check())
           <div class='form-action'>
             <label for='author'>Name</label>
-            <input type='text' name='author' />
+            <input type='text' name='author' style="max-width:100%;"/>
           </div>
         @endif
         <div class='form-action'>
           <label for='body'>Comment</label>
-          <textarea name='body'></textarea>
+          <textarea name='body' style="max-width:100%;"></textarea>
         </div>
         <div class='form-action' style="margin-top:0.4em;">
           <button type='submit' class='btn btn-block mybutton'>Post Comment</button>

@@ -17,10 +17,10 @@
         <div class='reply-form'>
             <form action='/messages/reply' method='post'>
                 {!! csrf_field() !!}
-    								<input type='hidden' name='name' value='{{$message->sender_name}}'>
+				<input type='hidden' name='name' value='{{$message->sender_name}}'>
                 <input type='hidden' name='email' value='{{ $message->email }}'>
                 <input type='hidden' name='subject' value='{{ $message->subject }}'>
-                <textarea name='message' rows=6> </textarea>
+                <textarea name='message' rows=6 style="max-width:100%;"> </textarea>
                 <button type='submit' class='btn fa fa-paper-plane mybutton' style="margin-top:1em;">
                     Send Reply
                 </button>
