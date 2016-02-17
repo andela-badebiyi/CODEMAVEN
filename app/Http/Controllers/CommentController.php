@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Comment;
 use Auth;
 use Illuminate\Http\Request;
+use URL;
 
 /**
  * Controller class that handles the posting of comments
@@ -20,11 +21,11 @@ class CommentController extends Controller
   public function store(Request $request, $video_id, Comment $comment)
   {
       if (Auth::check()) {
-          $this->validate($request, [
+        $this->validate($request, [
         'body' => 'required',
       ]);
       } else {
-          $this->validate($request, [
+        $this->validate($request, [
         'author' => 'required',
         'body'   => 'required',
       ]);
@@ -36,7 +37,7 @@ class CommentController extends Controller
       'body'     => $request->input('body'),
     ]);
 
-      return redirect()->back()->with('message-comment', 'Comment Posted!');
+      return redirect(URL::previous().'#comment-anchor')->with('message-comment', 'Comment Posted!');
   }
 
   /**
@@ -55,6 +56,6 @@ class CommentController extends Controller
       'reply_id' => $comment_id,
     ]);
 
-      return redirect()->back()->with('message-comment', 'Reply Posted!');
+      return redirect(URL::previous().'#comment-anchor')->with('message-comment', 'Reply Posted!');
   }
 }

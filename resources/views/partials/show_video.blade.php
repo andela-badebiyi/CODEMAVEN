@@ -38,7 +38,7 @@
   @endif
   <div class='add-comments row'>
     <div class='col-xs-12 col-md-8'>
-      <h4>Add Comments</h4>
+      <h4 id='comment-anchor'>Add Comments</h4>
       @include('partials.dashboard_flash')
       @if (Session::has('message-comment'))
         <div class="alert alert-success">

@@ -18,28 +18,3 @@
 		</div>
 	</div>
 </div>
-<style>
-	a.button{
-		width:100%;
-	}
-	.button.facebook{
-		background-color: #3b5998;
-	}
-	.button.facebook:hover{
-		background-color: #88A6E5;
-	}
-	.button.twitter{
-		background-color: #2FC2EF;
-	}
-	.button.twitter:hover{
-		background-color: #62F5FF;
-	}
-	.button.github{
-		background-color: #D2D2D2;
-		color: #000;
-	}
-	.button.github:hover{
-		background-color: #F3F3F3;
-		border: solid thin #000;
-	}
-</style>

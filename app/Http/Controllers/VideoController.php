@@ -8,6 +8,7 @@ use App\Video;
 use App\VideoRequest;
 use Illuminate\Http\Request;
 use App\Notifier\MailNotification;
+use App\Helpers\myhelpers;
 
 /**
  * Controller class that handles the uploading, editing
@@ -15,6 +16,7 @@ use App\Notifier\MailNotification;
  */
 class VideoController extends Controller
 {
+    use myhelpers;
     /**
      * Displays list of videos.
      */
@@ -181,26 +183,6 @@ class VideoController extends Controller
     private function createSlug($video)
     {
         return str_replace(' ', '-', $video->title).'-'.$video->id;
-    }
-
-    /**
-     * generates the update array that will be passed to the video model's
-     * update method.
-     *
-     * @param array $data
-     *
-     * @return array
-     */
-    private function generateUpdateData($data)
-    {
-        $output = [];
-        foreach ($data as $key => $value) {
-            if ((trim($value) !== '' || !isset($value)) && $key !== '_token') {
-                $output[$key] = $value;
-            }
-        }
-
-        return $output;
     }
 
     /**

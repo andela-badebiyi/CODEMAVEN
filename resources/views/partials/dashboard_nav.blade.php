@@ -45,7 +45,7 @@
         </div>
 
         <div class="collapse navbar-collapse ccol-xs-9 col-sm-9" id="myNavbar">
-          <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav">
                 <li>
                     <a href="/dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                 </li>
@@ -66,24 +66,8 @@
                 <li>
                     <a href="/settings"><i class="fa fa-cog fa-fw"></i> Account Settings</a>
                 </li>
-          </ul>
+            </ul>
         </div>
       </div>
     </nav>
 </div>
-<style type="text/css">
-    .nav a{
-        color:#111;
-    }
-    .sidebar-image{
-        margin-top:8px;
-        margin-bottom:8px;
-        margin-left: 5px;
-    }
-    .sidebar-image .label{
-        font-weight: bold;
-        color: #fff;
-        font-size: 100%;
-        margin-top: 8px;
-    }
-</style>

@@ -76,8 +76,4 @@
     @endforeach
   @endif
 @endif
-<style>
-.comment-section img{
-  border: solid medium #ccc;
-}
-</style>
+

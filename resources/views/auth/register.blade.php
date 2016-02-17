@@ -2,43 +2,18 @@
 @section('title', 'Sign Up')
 
 @section('content')
-<div class="row">
-	<div class='col-xs-12'>
-		<div id='login'>
-			@include('partials.form_register')
-			@include('partials.social_login')
+	<div class="row">
+		<div class='col-xs-12'>
+			<div id='login'>
+				@include('partials.form_register')
+				@include('partials.social_login')
+			</div>
 		</div>
 	</div>
-</div>
+@endsection
 
-<style>
-	#login{
-		background-color: rgba(240, 240, 240, 0.5);
-		border-radius: 4px 4px 4px 4px;
-		margin-right: auto;
-		margin-left: auto;
-		margin-top: 1em;
-	}
-
-	div.row{
-		margin-top:5em;
-		min-height: 100% !important;
-		margin-bottom: 4em;
-		padding-bottom: 1em;
-	}
-	.field{
-		padding: 0 1em 0 1em;
-		margin-right:auto;
-		margin-left:auto;
-		margin-bottom: 1em;
-	}
-	body{
-		background-image: url('http://middleeast.etoninstitute.com/wp-content/uploads/2015/06/computer-training.jpg');
-	}
-	a.button{
-		width:100%;
-	}
-</style>
+@section('css')
+	<link rel="stylesheet" href="{!! asset('css/auth.css') !!}" />
 @endsection
 
 @section('js')

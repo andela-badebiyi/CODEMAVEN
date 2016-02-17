@@ -1,4 +1,5 @@
 @extends('layouts.master')
+
 @if (Auth::check())
 	@section('title', 'My Videos')
 	@section('content')
@@ -10,9 +11,13 @@
 				{{$video->title}}
 			</h2>
 			<p><a href='/videos' class='button fa fa-arrow-left'>  Back to Videos</a></p>
-	  	@include('partials.show_video')
-    </div>
+	  		@include('partials.show_video')
+    	</div>
 	</div>
+	@endsection
+	@section('css')
+		<link rel="stylesheet" href="{!! asset('css/dashboard.css') !!}" >
+  		<link rel="stylesheet" href="{!! asset('css/show_video.css') !!}" />
 	@endsection
 @else
 	@section('title', 'All Videos')
@@ -25,73 +30,11 @@
 			@include('partials.show_video')
 		</div>
 	@endsection
+	@section('css')
+  		<link rel="stylesheet" href="{!! asset('css/show_video.css') !!}" />
+	@endsection
 @endif
-<style>
-  .video-wrapper{
-    border: solid thick #5bc0de;
-  }
-  .lesson-discuss{
-    margin-top: 3em;
-    background-color:white;
-    padding: 1em 1em 1em 1em;
-  }
-  .lesson-discuss h3{
-    text-align:center;
-    border-bottom: solid thin #ccc;
-  }
-  .video-info{
-    background-color: #fff;
-    min-height: 3em;
-    padding:2em 1em 1em 1em;
-  }
-	div.reply-form{
-		display:none;
-	}
 
-	div.comment-section a{
-		border-bottom:none;
-	}
-	.view-videos{
-		width: 80%;
-		margin-top: 3em;
-		margin-left: auto;
-		margin-right: auto;
-		padding: 3em 3em 3em 3em;
-	}
-</style>
 @section('js')
-<script>
-$(document).ready(function(){
-	$('.reply-link').click(function(){
-		$(this).next().toggle();
-		return false;
-	});
-});
-
-$(document).ready(function(){
-  $('#like').click(function(e){
-    e.preventDefault();
-    var likeLink = $(this);
-    $.ajax({
-      url: likeLink.attr('href'),
-      success: function(result){
-        if (result == 1) {
-          likeLink.removeAttr('class', 'fa-thumbs-down');
-          likeLink.attr('class', 'fa-thumbs-up');
-
-          likeCount = $('#like-count');
-          likeCount.html(parseInt(likeCount.html()) - 1)
-        }
-        if (result == 2) {
-          likeLink.removeAttr('class', 'fa-thumbs-up');
-          likeLink.attr('class', 'fa-thumbs-down');
-
-          likeCount = $('#like-count');
-          likeCount.html(parseInt(likeCount.html()) + 1)
-        }
-      }
-    });
-  });
-});
-</script>
+	<script src="{!! asset('js/show_video.js') !!}"> </script>
 @endsection

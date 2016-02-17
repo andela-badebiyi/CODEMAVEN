@@ -1,0 +1,38 @@
+.content-grid{
+  border: groove medium #ccc;
+  border-radius: 6px 6px 6px 6px;
+}
+.video-wrapper{
+  border: solid thick #5bc0de;
+}
+.lesson-discuss{
+  margin-top: 3em;
+  background-color:white;
+  padding: 1em 1em 1em 1em;
+}
+.lesson-discuss h3{
+  text-align:center;
+  border-bottom: solid thin #ccc;
+}
+.video-info{
+  background-color: #fff;
+  min-height: 3em;
+  padding:2em 1em 1em 1em;
+}
+div.reply-form{
+	display:none;
+}
+
+div.comment-section a{
+	border-bottom:none;
+}
+.view-videos{
+	width: 60%;
+	margin-top: 3em;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 3em 3em 3em 3em;
+}
+.comment-section img{
+  border: solid medium #ccc;
+}

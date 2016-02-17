@@ -25,7 +25,8 @@
         ],
         "psr-4": {
             "App\\": "app/",
-            "App\\Notifier\\": "app/Notifier/"
+            "App\\Notifier\\": "app/Notifier/",
+            "App\\Helpers\\": "app/Helpers/"
         },
         "psr-0": {
             "Way\\Tests": "way/src/"
