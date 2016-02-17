@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SendMessageRequest;
 use App\Message;
+use App\Notifier\MailNotification;
 use App\User;
 use DB;
 use Illuminate\Http\Request;
 use Mail;
-use App\Notifier\MailNotification;
 
 /**
  * Controller class that controls the messaging feature.
@@ -155,7 +155,6 @@ class MessageController extends Controller
             //send Notification
             $notification = new MailNotification($data);
             $notification->send();
-
         }
     }
 }

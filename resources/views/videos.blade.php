@@ -8,7 +8,7 @@
 @section('content')
   <div class='view-videos'>
     <div class='row' style='margin-bottom:2em'>
-      <div class="col-md-12" style="padding:0 0 0 0 !important;">
+      <div class="col-xs-12 col-sm-12 col-md-12" style="padding:0 0 0 0 !important;">
         <form action='/search' method='post'>
           {!! csrf_field() !!}
           <div class='col-xs-9'>

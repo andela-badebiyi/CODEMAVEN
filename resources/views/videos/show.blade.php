@@ -6,7 +6,7 @@
 	<div class="row con" style="margin-top:4em;">
 		@include('partials.dashboard_nav')
 
-		<div class=" col-xs-12 col-md-8 col-sm-12 col-lg-8" style="padding:0 3em 0 3em;">
+		<div class=" col-xs-12 col-md-9 col-sm-12 col-lg-9" style="padding:0 3em 0 3em;">
 			<h2 style="border-bottom:solid thin #ccc; border-top:solid thin #ccc;">
 				{{$video->title}}
 			</h2>

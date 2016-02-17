@@ -60,9 +60,9 @@ class HomeController extends Controller
 
       //render view passing the user and videos object to the view
       return view('user_videos', [
-        'user'   => $user,
-        'videos' => $user->videos()->get(),
-        'hide_options' => true
+        'user'         => $user,
+        'videos'       => $user->videos()->get(),
+        'hide_options' => true,
       ]);
     }
 
@@ -84,9 +84,9 @@ class HomeController extends Controller
       $videos = Video::whereRaw($search)->get();
 
         return view('videos', [
-        'videos' => $videos,
-        'query'  => $request->input('query'),
-        'hide_options' => true
+        'videos'       => $videos,
+        'query'        => $request->input('query'),
+        'hide_options' => true,
         ]);
     }
 

@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateVideoRequest;
 use App\Http\Requests\UploadVideoRequest;
+use App\Notifier\MailNotification;
 use App\Video;
 use App\VideoRequest;
 use Illuminate\Http\Request;
-use App\Notifier\MailNotification;
 use App\Helpers\myhelpers;
 
 /**
