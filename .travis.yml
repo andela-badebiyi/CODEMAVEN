@@ -5,6 +5,11 @@ php:
   - 5.6
   - 7.0
 
+env:
+  - CLOUDINARY_CLOUD_NAME=ddnvpqjmh
+  - CLOUDINARY_API_KEY=911597418222643
+  - CLOUDINARY_API_SECRET=qgnRvc9ACfuMQjrm2dNmrKTCYqc
+
 sudo: false
 
 matrix:
