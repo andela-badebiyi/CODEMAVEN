@@ -17,7 +17,7 @@ class HomeControllerRoutesTest extends TestCase
 
   public function testShowUserVideos()
   {
-      //create a user
+    //create a user
     $user = factory(\App\User::class)->create([
       'name'     => 'John Doe',
       'email'    => 'j_doe@gmail.com',
@@ -25,8 +25,10 @@ class HomeControllerRoutesTest extends TestCase
       'username' => 'jdoe_1',
     ]);
 
+    //make call to user homepage
     $this->call('get', '/'.$user->username.'/videos');
     $this->assertResponseOk();
+
     //delete user
     $user->delete();
   }
@@ -47,12 +49,12 @@ class HomeControllerRoutesTest extends TestCase
       'user_id' => $user->id,
     ]);
 
-        factory(\App\Video::class)->create([
+    factory(\App\Video::class)->create([
       'title'   => 'learning java',
       'user_id' => $user->id,
     ]);
 
-        $this->visit('allvideos')
+    $this->visit('allvideos')
     ->type('java', 'query')
     ->press('Search')
     ->see('learning java')
@@ -62,6 +64,6 @@ class HomeControllerRoutesTest extends TestCase
 
     //clean database
     $user->videos()->delete();
-        $user->delete();
+    $user->delete();
   }
 }

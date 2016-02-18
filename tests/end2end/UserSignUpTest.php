@@ -1,6 +1,4 @@
 <?php
-
-
 class UserSignUpTest extends TestCase
 {
   /**

@@ -43,29 +43,29 @@ class AccountSettingsFeatureTest extends TestCase
         ]);
 
       //create username
-        $user->username = 'johndoe_1';
+      $user->username = 'johndoe_1';
       $user->save();
 
-        //create settings record in database
-        $settings = new \App\Settings();
+      //create settings record in database
+      $settings = new \App\Settings();
       $settings->donotnotifymessage = 0;
       $settings->disablemessages = 0;
       $settings->user_id = $user->id;
       $settings->save();
 
       //disable messaging
-        $this->actingAs($user)
-        ->visit('/settings')
-        ->check('disablemessages')
-        ->press('submit');
+      $this->actingAs($user)
+      ->visit('/settings')
+      ->check('disablemessages')
+      ->press('submit');
 
-        //confirm that messaging has been disabled
-        $this->visit('/'.$user->username)
-        ->click('Send Message')
-        ->see('This user has disabled this feature');
+      //confirm that messaging has been disabled
+      $this->visit('/'.$user->username)
+      ->click('Send Message')
+      ->see('This user has disabled this feature');
 
-        //clean up database
-        $user->settings()->delete();
+      //clean up database
+      $user->settings()->delete();
       $user->delete();
   }
 
@@ -120,7 +120,7 @@ class AccountSettingsFeatureTest extends TestCase
       'name'     => 'John Doe',
       'email'    => 'j_doe@gmail.com',
       'password' => bcrypt('hayakiri'),
-      ]);
+    ]);
 
     //create settings record in database
     $settings = new \App\Settings();

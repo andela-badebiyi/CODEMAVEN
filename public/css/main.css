@@ -17,12 +17,16 @@
     }
 }
 
+a{
+  text-decoration: none !important;
+}
+
   .vid-description{
     height:3.5em;
   }
 
 .mybutton{
-background-color:#e89980; 
+background-color:#e89980;
 color:#fff;
 }
 .mybutton:hover{
@@ -1846,6 +1850,9 @@ color:#fff;
 		a:hover {
 			border-bottom-color: transparent;
 		}
+    a:active{
+      color: #e89980;
+    }
 
 	strong, b {
 		color: #646464;

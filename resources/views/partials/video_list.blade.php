@@ -16,13 +16,18 @@
             @else
               {{ $video->description }}
             @endif
-            <div class='text-align'>
-              <span class='fa fa-eye' style="border:solid medium #e89980;
-              padding:0.2em 0.2em 0.2em 0.2em; background-color:#e89980;
-              border-radius: 4px 4px 4px 4px; color: #fff;">
-                {{$video->view_count}} views
+            <div class='text-align' style="color:#ccc;">
+              <span class='fa fa-eye'>
+                {{$video->view_count}}
+              </span> |
+              <span class='fa fa-comment'>
+                {{count($video->comments()->get())}}
+              </span> |
+              <span class='fa fa-thumbs-up'>
+                {{count($video->likes()->get())}}
               </span>
             </div>
+
           </p>
           @if(!isset($hide_options))
           @can('user-owns-video', $video)
@@ -38,10 +43,9 @@
           @endcan
           @endif
           <a class="button-vid" href="{!! route('videos.show', ['slug' => $video->slug]) !!}">
-            <i class='fa fa-play'></i>  <span>Watch now</span>
+            <i class='fa fa-play'></i>  <span style="margin-left:4px">Watch now</span>
           </a>
       </div>
     </div>
   @endforeach
 </div>
-

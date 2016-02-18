@@ -2,7 +2,7 @@
 
 
 class CommentFeatureTest extends TestCase
-  {
+{
   /**
    * A basic test example.
    *
@@ -32,7 +32,7 @@ class CommentFeatureTest extends TestCase
 
     //clean up database
     $user->videos()->delete();
-      $user->delete();
+    $user->delete();
   }
 
   public function testAddCommentWithCorrectData()

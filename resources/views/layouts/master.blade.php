@@ -32,7 +32,7 @@
 				<li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
 			</ul>
 			<ul class="copyright">
-				<li>&copy; Untitled. All rights reserved.</li><li>Design: Adebiyi Bodunde</li>
+				<li>Niccolo inc. &copy; 2016.</li><li>Design: Adebiyi Bodunde</li>
 			</ul>
 		</div>
 

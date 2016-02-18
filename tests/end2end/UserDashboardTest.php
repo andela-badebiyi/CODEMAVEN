@@ -1,6 +1,4 @@
 <?php
-
-
 class UserDashboardTest extends TestCase
 {
   /**
@@ -17,9 +15,9 @@ class UserDashboardTest extends TestCase
   public function testDashboardAndLinksOnPage()
   {
     $user = factory(\App\User::class)->create([
-        'name'     => 'John Doe',
-        'email'    => 'j_doe@gmail.com',
-        'password' => bcrypt('hayakiri'),
+      'name'     => 'John Doe',
+      'email'    => 'j_doe@gmail.com',
+      'password' => bcrypt('hayakiri'),
     ]);
 
     $settings = new \App\Settings();

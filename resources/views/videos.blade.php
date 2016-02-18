@@ -11,12 +11,15 @@
       <div class="col-xs-12 col-sm-12 col-md-12" style="padding:0 0 0 0 !important;">
         <form action='/search' method='post'>
           {!! csrf_field() !!}
-          <div class='col-xs-9'>
-            <input type='text' name='query' placeholder='search videos' style="border-color: " />
-          </div>
-          <div class='col-xs-3'>
-            <button type='submit' class='fa fa-search btn btn-primary btn-block'
-            style='height:3em; background-color:#e89980; border-color:#e89980;'> <span class='visible-sm-inline visible-md-inline visible-lg-inline'>Search</span> </button>
+          <div class='col-xs-12'>
+            <div class="input-group">
+              <input type='text' class='form-control' name='query' placeholder='search videos' />
+              <div class="input-group-addon" style="background-color:#e89980;">
+                <button type='submit' class='fa fa-search btn btn-primary btn-block' style="background-color:#e89980; border-color:#e89980;">
+                  <span class='visible-sm-inline visible-md-inline visible-lg-inline'>Search</span>
+                </button>
+              </div>
+            </div>
           </div>
         </form>
       </div>

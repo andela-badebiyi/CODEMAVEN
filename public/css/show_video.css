@@ -1,9 +1,11 @@
 .content-grid{
-  border: groove medium #ccc;
-  border-radius: 6px 6px 6px 6px;
+  border: solid thin #ddd;
+  -webkit-box-shadow: 11px 11px 3px -4px rgba(204,204,204,1);
+  -moz-box-shadow: 11px 11px 3px -4px rgba(204,204,204,1);
+  box-shadow: 11px 11px 3px -4px rgba(204,204,204,1);
 }
 .video-wrapper{
-  border: solid thick #5bc0de;
+  border: solid thin #ddd;
 }
 .lesson-discuss{
   margin-top: 3em;
@@ -11,7 +13,6 @@
   padding: 1em 1em 1em 1em;
 }
 .lesson-discuss h3{
-  text-align:center;
   border-bottom: solid thin #ccc;
 }
 .video-info{

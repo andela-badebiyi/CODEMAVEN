@@ -22,8 +22,8 @@ class MessagingFeatureTest extends TestCase
 
     //set user settings
     $settings = new \App\Settings();
-      $settings->user_id = $user->id;
-      $settings->save();
+    $settings->user_id = $user->id;
+    $settings->save();
 
     //sendMessage with empty fields
     $this->visit('/'.$user->username)

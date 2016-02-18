@@ -7,7 +7,9 @@
 		<h2>&lt; CodeMaven /&gt;</h2>
 		<p>Where Code Experts and Connoisseurs share their knowledge</p>
 		<ul class="actions">
-			<li><a href="/register" class="button special">Sign Up</a></li>
+			@if(!Auth::check())
+				<li><a href="/register" class="button special">Sign Up</a></li>
+			@endif
 			<li><a href="/allvideos" class="button">Browse tutorials...</a></li>
 		</ul>
 	</section>
