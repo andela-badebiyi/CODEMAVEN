@@ -13,31 +13,31 @@ use URL;
  */
 class CommentController extends Controller
 {
-    /**
+  /**
    * Saves a posted comment.
    *
    * @param int $video_id The ID of the video under which this comment was posted under
    */
   public function store(Request $request, $video_id, Comment $comment)
   {
-      if (Auth::check()) {
-          $this->validate($request, [
+    if (Auth::check()) {
+      $this->validate($request, [
         'body' => 'required',
       ]);
-      } else {
-          $this->validate($request, [
+    } else {
+      $this->validate($request, [
         'author' => 'required',
         'body'   => 'required',
       ]);
-      }
-      $comment->create([
+    }
+    $comment->create([
       'user_id'  => Auth::check() ? $request->user()->id : 0,
       'video_id' => $video_id,
       'author'   => Auth::check() ? $request->user()->name : $request->input('author'),
       'body'     => $request->input('body'),
     ]);
 
-      return redirect(URL::previous().'#comment-anchor')->with('message-comment', 'Comment Posted!');
+    return redirect(URL::previous().'#comment-anchor')->with('message-comment', 'Comment Posted!');
   }
 
   /**
@@ -48,7 +48,7 @@ class CommentController extends Controller
    */
   public function storeReply(Request $request, $video_id, $comment_id, Comment $comment)
   {
-      $comment->create([
+    $comment->create([
       'user_id'  => Auth::check() ? $request->user()->id : 0,
       'video_id' => $video_id,
       'author'   => Auth::check() ? $request->user()->name : $request->input('author'),
@@ -56,6 +56,6 @@ class CommentController extends Controller
       'reply_id' => $comment_id,
     ]);
 
-      return redirect(URL::previous().'#comment-anchor')->with('message-comment', 'Reply Posted!');
+    return redirect(URL::previous().'#comment-anchor')->with('message-comment', 'Reply Posted!');
   }
 }

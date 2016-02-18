@@ -11,13 +11,13 @@ use Illuminate\Http\Request;
  */
 class LikeController extends Controller
 {
-    /**
+  /**
    * Prevents unauthenticated users from accessing any of the controller
    * methods.
    */
   public function __construct()
   {
-      $this->authorize('user-is-signed-in');
+    $this->authorize('user-is-signed-in');
   }
 
   /**
@@ -27,24 +27,24 @@ class LikeController extends Controller
    */
   public function like(Request $request, $video_id)
   {
-      //output used to determine if a like or unlike action took place
-      $output = 0;
+    //output used to determine if a like or unlike action took place
+    $output = 0;
 
-      //if video has already being liked by user then unlike, else like
-      if (Video::userHasAlreadyLikedVideo($request->user()->id, $video_id)) {
-          $this->unlikeVideo($request->user(), $video_id);
-          $output = 1;
-      } else {
-          $this->likeVideo($request->user(), $video_id);
-          $output = 2;
-      }
+    //if video has already being liked by user then unlike, else like
+    if (Video::userHasAlreadyLikedVideo($request->user()->id, $video_id)) {
+      $this->unlikeVideo($request->user(), $video_id);
+      $output = 1;
+    } else {
+      $this->likeVideo($request->user(), $video_id);
+      $output = 2;
+    }
 
-      //if its an ajax request echo $output else redirect back to previous page
-      if ($request->ajax()) {
-          return $output;
-      } else {
-          return redirect()->back();
-      }
+    //if its an ajax request echo $output else redirect back to previous page
+    if ($request->ajax()) {
+      return $output;
+    } else {
+      return redirect()->back();
+    }
   }
 
   /**
@@ -55,7 +55,7 @@ class LikeController extends Controller
    */
   private function likeVideo($user, $video_id)
   {
-      Like::create([
+    Like::create([
       'user_id'  => $user->id,
       'video_id' => $video_id,
       'like'     => 1,
@@ -70,7 +70,7 @@ class LikeController extends Controller
    */
   private function unlikeVideo($user, $video_id)
   {
-      Like::where('user_id', $user->id)
+    Like::where('user_id', $user->id)
     ->where('video_id', $video_id)
     ->delete();
   }

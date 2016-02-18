@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
     //properties that are mass assignable
-  protected $fillable = ['user_id', 'video_id', 'body', 'author', 'reply_id'];
+    protected $fillable = ['user_id', 'video_id', 'body', 'author', 'reply_id'];
 
     public function owner()
     {

@@ -4,20 +4,20 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class HomeControllerRoutesTest extends TestCase
 {
-    use DatabaseMigrations;
+  use DatabaseMigrations;
 
-    public function testHomePage()
-    {
-        $res = $this->call('get', '/');
-        $this->assertResponseOk();
+  public function testHomePage()
+  {
+    $this->call('get', '/');
+    $this->assertResponseOk();
 
-        $this->call('get', '/allvideos');
-        $this->assertResponseOk();
-    }
+    $this->call('get', '/allvideos');
+    $this->assertResponseOk();
+  }
 
-    public function testShowUserVideos()
-    {
-        //create a user
+  public function testShowUserVideos()
+  {
+      //create a user
     $user = factory(\App\User::class)->create([
       'name'     => 'John Doe',
       'email'    => 'j_doe@gmail.com',
@@ -25,15 +25,15 @@ class HomeControllerRoutesTest extends TestCase
       'username' => 'jdoe_1',
     ]);
 
-        $this->call('get', '/'.$user->username.'/videos');
-        $this->assertResponseOk();
+    $this->call('get', '/'.$user->username.'/videos');
+    $this->assertResponseOk();
     //delete user
     $user->delete();
-    }
+  }
 
-    public function testSearch()
-    {
-        //create a user
+  public function testSearch()
+  {
+    //create a user
     $user = factory(\App\User::class)->create([
       'name'     => 'John Doe',
       'email'    => 'j_doe@gmail.com',
@@ -63,5 +63,5 @@ class HomeControllerRoutesTest extends TestCase
     //clean database
     $user->videos()->delete();
         $user->delete();
-    }
+  }
 }

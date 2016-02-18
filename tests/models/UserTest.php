@@ -37,8 +37,8 @@ class UserTest extends TestCase
     {
         $usr = Mockery::mock(\App\User::class);
         $usr->shouldReceive('allCommentsOnVideos')
-                    ->once()
-                    ->andReturn(4);
+                ->once()
+                ->andReturn(4);
 
         $this->assertSame($usr->allCommentsOnVideos(), 4);
     }
