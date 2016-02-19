@@ -27,14 +27,9 @@
       <input type='text' name='username' value='{{$user->username}}'>
     </div>
     <div class="col-xs-6" style="margin-top:2em;">
-      <button type='submit' name='submit' class='btn fa fa-floppy-o' style="background-color:#e89980; color:white;"> Save my settings </button>
+      <button type='submit' name='submit' class='btn fa fa-floppy-o' style="background-color:#e89980; color:white;"> Save</button>
     </div>
     </form>
-    <div class='col-xs-6' style="margin-top:2em;">
-      {!! Form::open(['url' => '/deleteaccount', 'method' => 'delete']); !!}
-      <button type='submit' class='btn btn-danger fa fa-trash-o'> Delete My Account </button>
-      </form>
-    </div>
   </div>
 </div>
 @endsection

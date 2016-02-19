@@ -3,6 +3,7 @@
 
 @section('css')
   <link rel="stylesheet" href="{!! asset('css/dashboard.css') !!}" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.9/css/bootstrap-dialog.min.css" rel="stylesheet" type="text/css" />
 @endsection
 
 @section('content')

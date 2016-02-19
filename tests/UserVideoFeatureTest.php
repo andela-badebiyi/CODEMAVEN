@@ -16,13 +16,16 @@ class UserVideoFeatureTest extends TestCase
       'password' => bcrypt('hayakiri'),
     ]);
 
+    $category = new \App\Category;
+    $category->name = 'Java';
+    $category->save();
+
     $this->actingAs($user)
     ->visit('/videos')
     ->click('Upload New Video')
     ->press('submit')
     ->see('The title field is required')
     ->see('The description field is required.')
-    ->see('The category field is required.')
     ->see('The url field is required.')
     ->seePageIs('/videos/create');
 
@@ -42,7 +45,6 @@ class UserVideoFeatureTest extends TestCase
     ->click('Upload New Video')
     ->type('Learning Laravel', 'title')
     ->type('A brief introduction to laravel', 'description')
-    ->type('Laravel, php, mvc, framework', 'category')
     ->type('http://yakata.com', 'url')
     ->press('submit')
     ->see('This is an invalid youtube url');
@@ -53,6 +55,10 @@ class UserVideoFeatureTest extends TestCase
 
   public function testAddNewVideoWithValidData()
   {
+    $category = new \App\Category;
+    $category->name = 'Java';
+    $category->save();
+
     $user = factory(\App\User::class)->create([
       'name'     => 'John Doe',
       'email'    => 'j_doe@gmail.com',
@@ -64,8 +70,8 @@ class UserVideoFeatureTest extends TestCase
     ->click('Upload New Video')
     ->type('Learning Laravel', 'title')
     ->type('A brief introduction to laravel', 'description')
-    ->type('Laravel, php, mvc, framework', 'category')
     ->type('https://www.youtube.com/watch?v=3u1fu6f8Hto', 'url')
+    ->storeInput('category_id', $category->id)
     ->press('submit')
     ->see('Video Successfully Uploaded')
     ->seeInDatabase('videos', ['title' => 'Learning Laravel']);
@@ -85,7 +91,7 @@ class UserVideoFeatureTest extends TestCase
     $video = factory(\App\Video::class)->create([
       'title'       => 'Learning Laravel',
       'description' => 'Brief Introduction to Laravel',
-      'category'    => 'laravel',
+      'category_id'    => 1,
       'url'         => 'https://www.youtube.com/watch?v=3u1fu6f8Hto',
       'user_id'     => $user->id,
       'slug'        => 'brief-introduction-to-laravel',
@@ -93,11 +99,11 @@ class UserVideoFeatureTest extends TestCase
 
     $this->actingAs($user)
     ->visit('/videos/'.$video->slug.'/edit')
-    ->type('laravel, training, tutorial', 'category')
+    ->type('laravel, training, tutorial', 'description')
     ->press('Update Video Tutorial')
     ->see('Video Successfully Updated')
     ->seeInDatabase('videos', [
-      'category' => 'laravel, training, tutorial',
+      'description' => 'laravel, training, tutorial',
     ]);
 
     $user->videos()->delete();
@@ -112,10 +118,14 @@ class UserVideoFeatureTest extends TestCase
       'password' => bcrypt('hayakiri'),
     ]);
 
+    $category = new \App\Category;
+    $category->name = 'Java';
+    $category->save();
+
     $video = $user->videos()->create([
       'title'       => 'Learning Laravel',
       'description' => 'Brief Introduction to Laravel',
-      'category'    => 'laravel',
+      'category_id'    => $category->id,
       'url'         => 'https://www.youtube.com/watch?v=3u1fu6f8Hto',
     ]);
 

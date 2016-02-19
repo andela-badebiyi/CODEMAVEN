@@ -38,14 +38,22 @@ class VideoController extends Controller
      */
     public function create(Request $request)
     {
-
+        $cat = \App\Category::all();
+        $result = [];
+        
+        foreach($cat as $c){
+          $result[$c->id] = $c->name;
+        }
         //ensure that the user is signed in
         $this->authorize('user-is-signed-in');
 
         //render video upload form view
         return view('videos.create', [
             'user' => $request->user(),
+            'categories' => $result
         ]);
+
+
     }
 
     /**

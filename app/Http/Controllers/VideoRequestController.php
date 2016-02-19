@@ -42,6 +42,7 @@ class VideoRequestController extends Controller
         return view('videorequest.request_form', [
         'user'    => $request->user(),
         'request' => VideoRequest::findOrFail($request_id),
+        'categories' => \App\Category::lists('name', 'id')
       ]);
     }
 }

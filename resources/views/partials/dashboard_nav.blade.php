@@ -1,3 +1,9 @@
+@section('js')
+  @parent
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.9/js/bootstrap-dialog.min.js"></script>
+  <script src="{!! asset('js/account.js') !!}"></script>
+@endsection
+
 <div class="col-md-3 visible-md-block visible-lg-block">
     <div class="sidebar" role="navigation">
         <div class="sidebar-image align-center">
@@ -25,6 +31,9 @@
                 <li>
                     <a href="/settings"><i class="fa fa-cog fa-fw"></i> Account Settings</a>
                 </li>
+                <li>
+                    <a href="#" id='delete-account' data-token='{{ csrf_token() }}'><i class="fa fa-trash fa-fw"></i> Delete Account</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -36,10 +45,10 @@
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-            <span class="icon-bar"></span>                        
+            <span class="icon-bar"></span>
           </button>
         <div class="sidebar-image align-left col-xs-2 col-sm-2">
-            <div style="float:left;"><img src='{!! $user->avatar !!}' class="img-circle" width=32 /></div> 
+            <div style="float:left;"><img src='{!! $user->avatar !!}' class="img-circle" width=32 /></div>
             <div class="label" style="float:left;">Menu</div>
             <div style="clear:both;"></div>
         </div>
@@ -65,6 +74,9 @@
                 </li>
                 <li>
                     <a href="/settings"><i class="fa fa-cog fa-fw"></i> Account Settings</a>
+                </li>
+                <li>
+                    <a href="#" id='delete-account' data-token='{{ csrf_token() }}'><i class="fa fa-trash fa-fw"></i> Delete Account</a>
                 </li>
             </ul>
         </div>

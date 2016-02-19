@@ -44,42 +44,56 @@
 		</section>
 
 		<section class="box special features">
+			<header class="major">
+				<h2>
+					Popular Categories
+				</h2>
+			</header>
 			<div class="features-row">
 				<section>
-					<img src='https://wisdmlabs.com/site/wp-content/uploads/2014/01/php-logo-Converted-01-3.png'
-						width = auto height = 200 />
-					<h3>PHP</h3>
-					<p>
-					PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used open source general-purpose scripting language that is especially suited for web development and can be embedded into HTML.
-					</p>
+					<a href={{url('/category/php')}} class='no-link-style'>
+						<img src='https://wisdmlabs.com/site/wp-content/uploads/2014/01/php-logo-Converted-01-3.png'
+							width = auto height = 200 />
+						<h3>PHP</h3>
+						<p>
+						PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used open source general-purpose scripting language.
+						</p>
+					</a>
 				</section>
 				<section>
-					<img src='https://lh6.googleusercontent.com/-sU5IRCCxMYc/TiZsuwV0nFI/AAAAAAAAALc/dH1OxZImcJU/nodejs2.png'
-						width = auto height = 200 />
-					<h3>NodeJs</h3>
-					<p>
-					As an asynchronous event driven framework, Node.js is designed to build scalable network applications. In the following "hello world" example, many connections can be handled concurrently.
-					</p>
+					<a href={{url('/category/nodejs')}} class='no-link-style'>
+						<img src='https://lh6.googleusercontent.com/-sU5IRCCxMYc/TiZsuwV0nFI/AAAAAAAAALc/dH1OxZImcJU/nodejs2.png'
+							width = auto height = 200 />
+						<h3>NodeJs</h3>
+						<p>
+							As an asynchronous event driven framework, Node.js is designed to build scalable network applications.
+						</p>
+					</a>
 				</section>
 			</div>
 			<div class="features-row">
 				<section>
-					<img src='http://1.bp.blogspot.com/-b73FoohcHrM/VOycth1RcFI/AAAAAAAAVnI/nRvKNSlGERo/s1600/java-oracle.png'
-					 	width = auto height = 200 />
-					<h3>Java</h3>
-					<p>
-					Java is a high level, object-oriented, platform independent language.
-					</p>
+					<a href={{url('/category/java')}} class='no-link-style'>
+						<img src='http://1.bp.blogspot.com/-b73FoohcHrM/VOycth1RcFI/AAAAAAAAVnI/nRvKNSlGERo/s1600/java-oracle.png'
+						 	width = auto height = 200 />
+						<h3>Java</h3>
+						<p>
+						Java is a high level, object-oriented, platform independent language.
+						</p>
+					</a>
 				</section>
 				<section>
-					<img src='http://www.morecambehigh.com/LIVE/wp-content/uploads/2014/12/Python-Logo.png'
-						width=auto height=200>
-					<h3>Python</h3>
-					<p>
-					Python is an interpreted, object-oriented, high-level programming language with dynamic semantics. Its high-level built in data structures, combined with dynamic typing and dynamic binding, make it very attractive for Rapid Application Development
-					</p>
+					<a href={{url('/category/python')}} class='no-link-style'>
+						<img src='http://www.morecambehigh.com/LIVE/wp-content/uploads/2014/12/Python-Logo.png'
+							width=auto height=200>
+						<h3>Python</h3>
+						<p>
+						Python is an interpreted, object-oriented, high-level programming language with dynamic semantics.
+						</p>
+					</a>
 				</section>
 			</div>
+				<p class="text-center" style="margin-top: 1em;"><a href='/categories' class='btn mybutton'>Show All Categories</a></p>
 		</section>
 
 	</section>
@@ -100,4 +114,19 @@
 		</form>
 
 	</section>
+	<style>
+		.no-link-style{
+			color: #333;
+			text-decoration: none;
+			border:none;
+			-webkit-transition: opacity 0.6s;
+    	transition: opacity 0.6s;
+		}
+		.no-link-style:hover{
+			opacity: 0.3;
+		}
+		.no-link-style > img{
+			max-width:300px;
+		}
+	</style>
 @endsection

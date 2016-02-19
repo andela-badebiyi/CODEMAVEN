@@ -26,7 +26,13 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::auth();
 
+    Route::get('/categories', 'CategoryController@index');
+
+    Route::post('/category/create', 'CategoryController@create');
+
     Route::get('/allvideos', 'HomeController@allVideos');
+
+    Route::get('/category/{category_name}', 'CategoryController@show');
 
     Route::get('/', 'HomeController@index');
 

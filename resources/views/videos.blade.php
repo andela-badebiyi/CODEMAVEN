@@ -24,6 +24,12 @@
         </form>
       </div>
     </div>
+    @if(isset($category))
+    <ol class="breadcrumb">
+      <li><a href="/categories">Categories</a></li>
+      <li class="active">{{$category}}</li>
+    </ol>
+    @endif
     @if(isset($query))
       <h3>Search: {{$query}} </h3>
     @endif

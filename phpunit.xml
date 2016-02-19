@@ -12,15 +12,6 @@
         <testsuite name="Application Test Suite">
             <directory>./tests/</directory>
         </testsuite>
-        <testsuite name="models">
-            <directory>./tests/models/</directory>
-        </testsuite>
-        <testsuite name="controllers">
-            <directory>./tests/controllers/</directory>
-        </testsuite>
-        <testsuite name="endtoend">
-            <directory>./tests/end2end/</directory>
-        </testsuite>
     </testsuites>
     <filter>
       <whitelist>

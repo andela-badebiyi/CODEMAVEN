@@ -115,6 +115,8 @@ class AccountSettingsFeatureTest extends TestCase
 
   public function testDeleteAccount()
   {
+    $this->withoutMiddleware();
+
     //create a user
     $user = factory(\App\User::class)->create([
       'name'     => 'John Doe',
@@ -129,10 +131,12 @@ class AccountSettingsFeatureTest extends TestCase
     $settings->user_id = $user->id;
     $settings->save();
 
-    $this->actingAs($user)
-    ->visit('/settings')
-    ->press('Delete My Account')
-    ->notSeeInDatabase('users', [
+    $this->actingAs($user)->call('delete', '/deleteaccount',
+    ['_token' => csrf_token() ]);
+    $this->assertResponseStatus(302);
+
+
+    $this->notSeeInDatabase('users', [
         'name'  => 'John Doe',
         'email' => 'j_doe@gmail.com',
     ]);

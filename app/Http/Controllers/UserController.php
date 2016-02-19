@@ -80,7 +80,7 @@ class UserController extends Controller
         return redirect()->back()->with('message', 'Update Successful!');
     }
 
-    /** 
+    /**
      * Display the user account settings page.
      */
     public function userSettings(Request $request)
@@ -93,19 +93,25 @@ class UserController extends Controller
      */
     public function deleteUser(Request $request)
     {
-        //fetch user
-        $user = $request->user();
+      //fetch user
+      $user = $request->user();
 
-        //prepare user for deleting
-        $user->comments()->delete();
-        $user->likes()->delete();
-        $user->videos()->delete();
-        $user->settings()->delete();
-        $user->messages()->delete();
+      //prepare user for deleting
+      $user->comments()->delete();
 
-        //delete user and redirect to homepage
-        $user->delete();
+      //delete all videos comments
+      $vid = $user->videos()->get();
+      foreach ($vid as $v) {
+        $v->comments()->delete();
+      }
+      $user->likes()->delete();
+      $user->videos()->delete();
+      $user->settings()->delete();
+      $user->messages()->delete();
 
-        return redirect('/');
+      //delete user and redirect to homepage
+      $user->delete();
+
+      return $request->ajax() ? 'done' : redirect('/');
     }
 }

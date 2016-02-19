@@ -27,11 +27,11 @@ $factory->define(App\Video::class, function (Faker\Generator $faker) {
 
     return [
         'title'       => $title,
-        'category'    => $faker->word,
+        'category_id'    => 1,
         'description' => $faker->paragraph,
         'url'         => $faker->url,
         'user_id'     => 0,
-    'slug'            => $slug,
+        'slug'            => $slug,
     ];
 });
 
@@ -42,5 +42,11 @@ $factory->define(App\Message::class, function (Faker\Generator $faker) {
     'subject'     => $faker->sentence,
     'message'     => $faker->paragraph,
     'reciever_id' => 1,
+  ];
+});
+
+$factory->define(App\Category::class, function(Faker\Generator $faker){
+  return [
+    'name' => $faker->word
   ];
 });

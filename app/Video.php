@@ -12,12 +12,17 @@ class Video extends Model
      * @var array
      */
     protected $fillable = [
-        'title', 'description', 'category', 'url',
+        'title', 'description', 'category_id', 'url',
     ];
 
     public function owner()
     {
         return $this->belongsTo('App\User', 'user_id');
+    }
+
+    public function category()
+    {
+      return $this->belongsTo('App\Category', 'category_id');
     }
 
     public function likes()

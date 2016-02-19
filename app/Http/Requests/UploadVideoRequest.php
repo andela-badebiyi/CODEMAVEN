@@ -24,7 +24,7 @@ class UploadVideoRequest extends Request
         return [
             'title'       => 'required',
             'description' => 'required',
-            'category'    => 'required',
+            'category_id'    => 'required',
             'url'         => 'required|validYoutubeUrl',
         ];
     }

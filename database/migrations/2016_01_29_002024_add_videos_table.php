@@ -17,7 +17,8 @@ class AddVideosTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('url');
-            $table->string('category');
+            $table->integer('category_id')->unsigned();
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->string('slug')->unique()->nullable();
             $table->integer('view_count')->default(0);
             $table->timestamps();
