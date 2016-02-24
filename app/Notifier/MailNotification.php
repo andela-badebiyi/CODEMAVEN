@@ -16,9 +16,11 @@ class MailNotification
     public function send()
     {
         $recepient = $this->recepient;
-        @Mail::send('mails.message_notification', $this->recepient, function ($message) use ($recepient) {
-          $message->to($recepient['email']);
-          $message->subject($recepient['subject']);
-      });
+        if(!filter_var($recepient['email'], FILTER_VALIDATE_EMAIL) === false){
+          @Mail::send('mails.message_notification', $this->recepient, function ($message) use ($recepient) {
+            $message->to($recepient['email']);
+            $message->subject($recepient['subject']);
+          }); 
+        }
     }
 }
