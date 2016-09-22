@@ -1,0 +1,45 @@
+.content-grid{
+  border: solid thin #ddd;
+  -webkit-box-shadow: 1px 2px 5px 0px rgba(204,204,204,1);
+  -moz-box-shadow: 1px 2px 5px 0px rgba(204,204,204,1);
+  box-shadow: 1px 2px 5px 0px rgba(204,204,204,1);
+}
+.video-wrapper{
+  border: solid thin #ddd;
+}
+.lesson-discuss{
+  margin-top: 3em;
+  background-color:white;
+  padding: 1em 1em 1em 1em;
+}
+.lesson-discuss h3{
+  border-bottom: solid thin #ccc;
+}
+.video-info{
+  background-color: #fff;
+  min-height: 3em;
+  padding:2em 1em 1em 1em;
+}
+div.reply-form{
+	display:none;
+}
+
+div.comment-section a{
+	border-bottom:none;
+}
+.view-videos{
+	width: 90%;
+	margin-top: 3em;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 3em 3em 3em 3em;
+}
+.comment-section img{
+  border: solid medium #ccc;
+}
+@media only screen and (max-width: 500px) {
+  .view-videos {
+    width:100%;
+    padding-right: 1em;
+  }
+}
